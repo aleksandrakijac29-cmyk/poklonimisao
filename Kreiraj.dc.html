@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700&family=Caveat:wght@500;600;700&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  a { color: #A65B63; text-decoration: none; }
+  a:hover { color: #4A3933; }
+  input, textarea { font-family: Manrope, sans-serif; }
+  textarea:focus, input:focus { outline: none; border-color: #A65B63; }
+</style>
+<style>.sc-host[data-sc-name="Header"]{display:contents;}</style>
+</helmet>
+<div style="background:#FFFEFC;font-family:Manrope,sans-serif;color:#4A3933;-webkit-font-smoothing:antialiased;">
+  <dc-import name="Header" active="kreiraj" hint-size="100%,72px"></dc-import>
+
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(32px,5vw,56px) clamp(16px,4vw,40px) clamp(56px,7vw,96px);">
+    <div style="text-align:center;margin-bottom:clamp(28px,4vw,44px);">
+      <p style="margin:0 0 12px;font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#B49A7D;">Napravi svoj poklon</p>
+      <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,5vw,52px);line-height:1.05;color:#4A3933;">Od fotografije do poklona</h1>
+    </div>
+
+    <!-- STEP PROGRESS -->
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:clamp(32px,4vw,48px);">
+      <sc-for list="{{ stepNav }}" as="s" hint-placeholder-count="4">
+        <button onClick="{{ s.onClick }}" style="display:flex;align-items:center;gap:10px;background:{{ s.bg }};border:1px solid {{ s.border }};color:{{ s.color }};padding:11px 18px;border-radius:2px;cursor:pointer;font-family:Manrope,sans-serif;font-size:14px;font-weight:600;">
+          <span style="width:22px;height:22px;border-radius:50%;border:1px solid {{ s.dot }};display:inline-flex;align-items:center;justify-content:center;font-size:12px;">{{ s.num }}</span>
+          {{ s.label }}
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,4vw,56px);align-items:start;">
+
+      <!-- CONTROLS -->
+      <div>
+        <!-- STEP 1 -->
+        <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <h2 style="margin:0 0 6px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;color:#4A3933;">1. Dodaj fotografiju</h2>
+            <p style="margin:0 0 24px;font-size:15px;line-height:1.7;color:#806E66;">Otpremi omiljenu sliku sa računara ili telefona.</p>
+            <label style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;border:1.5px dashed #B49A7D;background:#F8F1EA;padding:44px 24px;border-radius:3px;cursor:pointer;text-align:center;" style-hover="background:#EDE1D5;">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#A65B63" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V5"/><path d="M8 9l4-4 4 4"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+              <span style="font-size:15px;font-weight:600;color:#4A3933;">Klikni da otpremiš fotografiju</span>
+              <span style="font-size:13px;color:#806E66;">JPG ili PNG · do 20 MB</span>
+              <input type="file" accept="image/*" onChange="{{ onPhoto }}" style="display:none;">
+            </label>
+            <sc-if value="{{ photo }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ clearPhoto }}" style="margin-top:16px;background:none;border:none;color:#A65B63;font-size:14px;font-weight:600;cursor:pointer;padding:0;">Ukloni fotografiju</button>
+            </sc-if>
+            <div style="margin-top:28px;display:flex;justify-content:flex-end;">
+              <button onClick="{{ next }}" style="background:#A65B63;color:#FFFEFC;border:none;padding:15px 28px;border-radius:2px;font-family:Manrope,sans-serif;font-weight:600;font-size:15px;cursor:pointer;" style-hover="background:#8f4d54;">Dalje &rarr;</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- STEP 2 -->
+        <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <h2 style="margin:0 0 6px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;color:#4A3933;">2. Izaberi citat ili napiši svoju misao</h2>
+            <p style="margin:0 0 22px;font-size:15px;line-height:1.7;color:#806E66;">Odaberi gotov citat, napiši sopstvenu poruku ili ostavi poster bez teksta.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;">
+              <sc-for list="{{ textTabs }}" as="t" hint-placeholder-count="3">
+                <button onClick="{{ t.onClick }}" style="background:{{ t.bg }};border:1px solid {{ t.border }};color:{{ t.color }};padding:10px 18px;border-radius:100px;cursor:pointer;font-family:Manrope,sans-serif;font-size:13.5px;font-weight:600;">{{ t.label }}</button>
+              </sc-for>
+            </div>
+            <sc-if value="{{ showPreset }}" hint-placeholder-val="{{ true }}">
+              <div>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
+                  <sc-for list="{{ quoteCats }}" as="c" hint-placeholder-count="5">
+                    <button onClick="{{ c.onClick }}" style="background:{{ c.bg }};border:1px solid {{ c.border }};color:{{ c.color }};padding:7px 14px;border-radius:100px;cursor:pointer;font-family:Manrope,sans-serif;font-size:12.5px;font-weight:600;">{{ c.label }}</button>
+                  </sc-for>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <sc-for list="{{ presetQuotes }}" as="q" hint-placeholder-count="3">
+                    <button onClick="{{ q.onClick }}" style="display:flex;align-items:center;gap:14px;text-align:left;background:{{ q.bg }};border:1px solid {{ q.border }};color:#4A3933;padding:15px 18px;border-radius:2px;cursor:pointer;">
+                      <span style="flex:0 0 auto;width:18px;height:18px;border-radius:50%;border:1px solid {{ q.ring }};background:{{ q.dot }};box-shadow:inset 0 0 0 3px #FFFEFC;"></span>
+                      <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;line-height:1.35;">„{{ q.text }}”</span>
+                    </button>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ showCustomInput }}" hint-placeholder-val="{{ false }}">
+              <div>
+                <label style="display:block;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#B49A7D;margin-bottom:10px;">Unesi svoju misao</label>
+                <textarea value="{{ customQuote }}" onInput="{{ onCustom }}" placeholder="Ovde upiši svoju misao..." rows="4" style="width:100%;background:#FFFEFC;border:1px solid #DCCBC0;border-radius:2px;padding:14px;font-size:15px;line-height:1.6;color:#4A3933;resize:vertical;"></textarea>
+              </div>
+            </sc-if>
+            <sc-if value="{{ showNone }}" hint-placeholder-val="{{ false }}">
+              <p style="margin:0;padding:24px;background:#F8F1EA;border:1px dashed #DCCBC0;border-radius:2px;font-size:15px;line-height:1.6;color:#806E66;text-align:center;">Poster bez teksta — u prvom planu je samo vaša fotografija.</p>
+            </sc-if>
+            <div style="margin-top:28px;display:flex;justify-content:space-between;gap:12px;">
+              <button onClick="{{ prev }}" style="background:transparent;color:#A65B63;border:1px solid #DCCBC0;padding:15px 24px;border-radius:2px;font-family:Manrope,sans-serif;font-weight:600;font-size:15px;cursor:pointer;" style-hover="border-color:#A65B63;">&larr; Nazad</button>
+              <button onClick="{{ next }}" style="background:#A65B63;color:#FFFEFC;border:none;padding:15px 28px;border-radius:2px;font-family:Manrope,sans-serif;font-weight:600;font-size:15px;cursor:pointer;" style-hover="background:#8f4d54;">Dalje &rarr;</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- STEP 3 -->
+        <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <h2 style="margin:0 0 6px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;color:#4A3933;">3. Izaberi stil i boje</h2>
+            <p style="margin:0 0 22px;font-size:15px;line-height:1.7;color:#806E66;">Podesi izgled postera prema svom ukusu.</p>
+            <label style="display:block;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#B49A7D;margin-bottom:12px;">Stil</label>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:26px;">
+              <sc-for list="{{ styleOptions }}" as="s" hint-placeholder-count="5">
+                <button onClick="{{ s.onClick }}" style="background:{{ s.bg }};border:1px solid {{ s.border }};color:{{ s.color }};padding:14px 12px;border-radius:2px;cursor:pointer;font-family:Manrope,sans-serif;font-size:14px;font-weight:600;">{{ s.label }}</button>
+              </sc-for>
+            </div>
+            <label style="display:block;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#B49A7D;margin-bottom:12px;">Boja pozadine</label>
+            <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px;">
+              <sc-for list="{{ bgOptions }}" as="b" hint-placeholder-count="5">
+                <button onClick="{{ b.onClick }}" aria-label="Boja" style="width:40px;height:40px;border-radius:50%;background:{{ b.color }};border:{{ b.ringw }} solid {{ b.ring }};cursor:pointer;box-shadow:inset 0 0 0 3px #FFFEFC;"></button>
+              </sc-for>
+            </div>
+            <div style="margin-top:28px;display:flex;justify-content:space-between;gap:12px;">
+              <button onClick="{{ prev }}" style="background:transparent;color:#A65B63;border:1px solid #DCCBC0;padding:15px 24px;border-radius:2px;font-family:Manrope,sans-serif;font-weight:600;font-size:15px;cursor:pointer;" style-hover="border-color:#A65B63;">&larr; Nazad</button>
+              <button onClick="{{ next }}" style="background:#A65B63;color:#FFFEFC;border:none;padding:15px 28px;border-radius:2px;font-family:Manrope,sans-serif;font-weight:600;font-size:15px;cursor:pointer;" style-hover="background:#8f4d54;">Dalje &rarr;</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- STEP 4 -->
+        <sc-if value="{{ isStep4 }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <h2 style="margin:0 0 6px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;color:#4A3933;">Tvoj poklon je spreman!</h2>
+            <p style="margin:0 0 22px;font-size:15px;line-height:1.7;color:#806E66;">Proveri izabrane opcije, pa odaberi način preuzimanja, veličinu i količinu.</p>
+            <div style="border:1px solid #DCCBC0;border-radius:2px;padding:6px 20px;margin-bottom:26px;">
+              <div style="display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid #EDE1D5;">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#A65B63" stroke-width="1.4"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span style="width:64px;font-size:13px;font-weight:600;color:#B49A7D;">Slika</span>
+                <span style="font-size:14.5px;color:#4A3933;">{{ sumSlika }}</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid #EDE1D5;">
+                <span style="width:19px;text-align:center;font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1;color:#A65B63;">&bdquo;</span>
+                <span style="width:64px;font-size:13px;font-weight:600;color:#B49A7D;">Citat</span>
+                <span style="font-size:14.5px;color:#4A3933;font-family:'Cormorant Garamond',serif;font-style:italic;">{{ sumCitat }}</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid #EDE1D5;">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#A65B63" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="9" r="1.3" fill="#A65B63" stroke="none"/><circle cx="15" cy="10" r="1.3" fill="#A65B63" stroke="none"/><circle cx="11" cy="15" r="1.3" fill="#A65B63" stroke="none"/></svg>
+                <span style="width:64px;font-size:13px;font-weight:600;color:#B49A7D;">Stil</span>
+                <span style="font-size:14.5px;color:#4A3933;">{{ sumStil }}</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid #EDE1D5;">
+                <span style="width:19px;height:19px;border-radius:50%;background:{{ canvasBg }};border:1px solid #DCCBC0;"></span>
+                <span style="width:64px;font-size:13px;font-weight:600;color:#B49A7D;">Boje</span>
+                <span style="font-size:14.5px;color:#4A3933;">{{ sumBoje }}</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px;padding:13px 0;">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#A65B63" stroke-width="1.4"><rect x="4" y="3" width="16" height="18" rx="1"/><rect x="8" y="7" width="8" height="10"/></svg>
+                <span style="width:64px;font-size:13px;font-weight:600;color:#B49A7D;">Format</span>
+                <span style="font-size:14.5px;color:#4A3933;">{{ sumFormat }}</span>
+              </div>
+            </div>
+            <label style="display:block;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#B49A7D;margin-bottom:12px;">Format</label>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:26px;">
+              <sc-for list="{{ formatOptions }}" as="f" hint-placeholder-count="3">
+                <button onClick="{{ f.onClick }}" style="display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;background:{{ f.bg }};border:1px solid {{ f.border }};color:#4A3933;padding:16px 18px;border-radius:2px;cursor:pointer;font-family:Manrope,sans-serif;">
+                  <span><span style="display:block;font-size:15px;font-weight:600;">{{ f.label }}</span><span style="display:block;font-size:13px;color:#806E66;margin-top:3px;">{{ f.desc }}</span></span>
+                  <span style="font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:#A65B63;white-space:nowrap;">{{ f.price }}</span>
+                </button>
+              </sc-for>
+            </div>
+            <label style="display:block;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#B49A7D;margin-bottom:12px;">Količina</label>
+            <div style="display:flex;align-items:center;gap:2px;margin-bottom:26px;">
+              <button onClick="{{ decQty }}" style="width:44px;height:44px;background:#F8F1EA;border:1px solid #DCCBC0;color:#4A3933;font-size:20px;cursor:pointer;border-radius:2px 0 0 2px;">&minus;</button>
+              <span style="min-width:56px;height:44px;display:inline-flex;align-items:center;justify-content:center;border-top:1px solid #DCCBC0;border-bottom:1px solid #DCCBC0;font-size:16px;font-weight:600;">{{ qty }}</span>
+              <button onClick="{{ incQty }}" style="width:44px;height:44px;background:#F8F1EA;border:1px solid #DCCBC0;color:#4A3933;font-size:20px;cursor:pointer;border-radius:0 2px 2px 0;">+</button>
+            </div>
+            <button onClick="{{ next }}" style="width:100%;background:#A65B63;color:#FFFEFC;border:none;padding:17px;border-radius:2px;font-family:Manrope,sans-serif;font-weight:600;font-size:16px;cursor:pointer;" style-hover="background:#8f4d54;">Nastavi na porudžbinu &rarr;</button>
+            <button onClick="{{ editSettings }}" style="width:100%;margin-top:12px;background:transparent;color:#A65B63;border:1px solid #DCCBC0;padding:15px;border-radius:2px;font-family:Manrope,sans-serif;font-weight:600;font-size:15px;cursor:pointer;" style-hover="border-color:#A65B63;">Izmeni podešavanja</button>
+            <div style="margin-top:16px;display:flex;justify-content:flex-start;">
+              <button onClick="{{ prev }}" style="background:transparent;color:#806E66;border:none;padding:6px 0;font-family:Manrope,sans-serif;font-weight:600;font-size:14px;cursor:pointer;" style-hover="color:#A65B63;">&larr; Nazad na korak 3</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- STEP 5 -->
+        <sc-if value="{{ isStep5 }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <h2 style="margin:0 0 6px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;color:#4A3933;">5. Podaci za isporuku</h2>
+            <p style="margin:0 0 22px;font-size:15px;line-height:1.7;color:#806E66;">Ostavi svoje podatke i javljamo se radi potvrde i plaćanja.</p>
+            <div style="border:1px solid #DCCBC0;border-radius:2px;padding:16px 18px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:#F8F1EA;">
+              <span style="font-size:14px;color:#806E66;">{{ sumFormat }} · {{ qty }} kom.</span>
+              <span style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#A65B63;white-space:nowrap;">{{ totalPrice }}</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div>
+                <label style="display:block;font-size:13px;font-weight:600;color:#4A3933;margin-bottom:7px;">Ime i prezime *</label>
+                <input type="text" value="{{ cName }}" onInput="{{ onCName }}" placeholder="Tvoje ime i prezime" style="width:100%;background:#FFFEFC;border:1px solid #DCCBC0;border-radius:2px;padding:13px 14px;font-size:15px;color:#4A3933;">
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;">
+                <div>
+                  <label style="display:block;font-size:13px;font-weight:600;color:#4A3933;margin-bottom:7px;">E-mail *</label>
+                  <input type="email" value="{{ cEmail }}" onInput="{{ onCEmail }}" placeholder="ime@primer.rs" style="width:100%;background:#FFFEFC;border:1px solid #DCCBC0;border-radius:2px;padding:13px 14px;font-size:15px;color:#4A3933;">
+                </div>
+                <div>
+                  <label style="display:block;font-size:13px;font-weight:600;color:#4A3933;margin-bottom:7px;">Telefon *</label>
+                  <input type="tel" value="{{ cPhone }}" onInput="{{ onCPhone }}" placeholder="06x xxx xxxx" style="width:100%;background:#FFFEFC;border:1px solid #DCCBC0;border-radius:2px;padding:13px 14px;font-size:15px;color:#4A3933;">
+                </div>
+              </div>
+              <sc-if value="{{ needsAddress }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;flex-direction:column;gap:16px;">
+                  <div>
+                    <label style="display:block;font-size:13px;font-weight:600;color:#4A3933;margin-bottom:7px;">Adresa (ulica i broj) *</label>
+                    <input type="text" value="{{ cAddr }}" onInput="{{ onCAddr }}" placeholder="Ulica i broj" style="width:100%;background:#FFFEFC;border:1px solid #DCCBC0;border-radius:2px;padding:13px 14px;font-size:15px;color:#4A3933;">
+                  </div>
+                  <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;">
+                    <div>
+                      <label style="display:block;font-size:13px;font-weight:600;color:#4A3933;margin-bottom:7px;">Grad *</label>
+                      <input type="text" value="{{ cCity }}" onInput="{{ onCCity }}" placeholder="Grad" style="width:100%;background:#FFFEFC;border:1px solid #DCCBC0;border-radius:2px;padding:13px 14px;font-size:15px;color:#4A3933;">
+                    </div>
+                    <div>
+                      <label style="display:block;font-size:13px;font-weight:600;color:#4A3933;margin-bottom:7px;">Poštanski broj</label>
+                      <input type="text" value="{{ cZip }}" onInput="{{ onCZip }}" placeholder="00000" style="width:100%;background:#FFFEFC;border:1px solid #DCCBC0;border-radius:2px;padding:13px 14px;font-size:15px;color:#4A3933;">
+                    </div>
+                  </div>
+                </div>
+              </sc-if>
+              <div>
+                <label style="display:block;font-size:13px;font-weight:600;color:#4A3933;margin-bottom:7px;">Napomena (opciono)</label>
+                <textarea rows="3" value="{{ cNote }}" onInput="{{ onCNote }}" placeholder="Poseban zahtev, željeni datum isporuke..." style="width:100%;background:#FFFEFC;border:1px solid #DCCBC0;border-radius:2px;padding:13px 14px;font-size:15px;line-height:1.6;color:#4A3933;resize:vertical;"></textarea>
+              </div>
+              <p style="margin:0;padding:14px 16px;background:#F8F1EA;border:1px dashed #DCCBC0;border-radius:2px;font-size:13.5px;line-height:1.65;color:#806E66;">📷 Fotografiju za poster pošalji na <a href="mailto:poklonimisao@gmail.com?subject=Fotografija%20za%20porud%C5%BEbinu" style="font-weight:600;">poklonimisao@gmail.com</a> ili nam se javi na <a href="tel:+381601663019" style="font-weight:600;white-space:nowrap;">060 166 30 19</a> — javljamo ti se sa potvrdom.</p>
+            </div>
+            <button onClick="{{ submitOrder }}" disabled="{{ ordering }}" style="width:100%;margin-top:22px;background:#A65B63;color:#FFFEFC;border:none;padding:17px;border-radius:2px;font-family:Manrope,sans-serif;font-weight:600;font-size:16px;cursor:pointer;opacity:{{ orderBtnOpacity }};" style-hover="background:#8f4d54;">{{ orderBtnLabel }}</button>
+            <sc-if value="{{ orderSent }}" hint-placeholder-val="{{ false }}">
+              <p style="margin:16px 0 0;padding:16px;background:#EDE1D5;border:1px solid #DCCBC0;border-radius:2px;font-size:14.5px;line-height:1.65;color:#4A3933;">Hvala! Porudžbina je poslata. Javljamo se uskoro na tvoj e-mail radi potvrde i plaćanja. Ne zaboravi da pošalješ fotografiju na poklonimisao@gmail.com.</p>
+            </sc-if>
+            <sc-if value="{{ orderError }}" hint-placeholder-val="{{ false }}">
+              <p style="margin:16px 0 0;padding:16px;background:#F3E3E1;border:1px solid #D8B4B0;border-radius:2px;font-size:14.5px;line-height:1.65;color:#8f4d54;">{{ orderErrorMsg }}</p>
+            </sc-if>
+            <div style="margin-top:16px;display:flex;justify-content:flex-start;">
+              <button onClick="{{ prev }}" style="background:transparent;color:#806E66;border:none;padding:6px 0;font-family:Manrope,sans-serif;font-weight:600;font-size:14px;cursor:pointer;" style-hover="color:#A65B63;">&larr; Nazad na korak 4</button>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+
+      <!-- LIVE PREVIEW -->
+      <div style="position:sticky;top:96px;">
+        <p style="margin:0 0 16px;text-align:center;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#B49A7D;">Pregled uživo</p>
+        <div style="background:radial-gradient(120% 120% at 50% 30%,#F8F1EA 0%,#EDE1D5 100%);padding:clamp(28px,5vw,52px);border-radius:3px;display:flex;justify-content:center;">
+          <div style="width:100%;max-width:330px;background:#FFFEFC;border:{{ frameW }} solid {{ frameC }};padding:{{ matPad }};box-shadow:0 30px 60px -30px rgba(74,57,51,.45);">
+            <div style="background:{{ canvasBg }};padding:clamp(16px,3vw,24px);display:flex;flex-direction:column;">
+              <sc-if value="{{ photo }}" hint-placeholder-val="{{ false }}">
+                <div style="aspect-ratio:1/1;overflow:hidden;margin-bottom:18px;">
+                  <img src="{{ photo }}" alt="Vaša fotografija" style="width:100%;height:100%;object-fit:cover;display:block;">
+                </div>
+              </sc-if>
+              <sc-if value="{{ noPhoto }}" hint-placeholder-val="{{ true }}">
+                <div style="aspect-ratio:1/1;margin-bottom:18px;background-image:repeating-linear-gradient(45deg,#EDE1D5,#EDE1D5 9px,#F3E9DF 9px,#F3E9DF 18px);display:flex;align-items:center;justify-content:center;">
+                  <span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#806E66;">[ vaša fotografija ]</span>
+                </div>
+              </sc-if>
+              <sc-if value="{{ showQuote }}" hint-placeholder-val="{{ true }}">
+                <p style="margin:0;text-align:center;font-family:{{ quoteFont }};font-style:{{ quoteStyle }};font-weight:{{ quoteWeight }};font-size:clamp(17px,2.4vw,21px);line-height:1.35;color:{{ quoteColor }};">„{{ previewQuote }}”</p>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+        <p style="margin:14px 0 0;text-align:center;font-size:12px;font-style:italic;color:#B49A7D;">Prikaz je samo primer</p>
+        <p style="margin:6px 0 0;text-align:center;font-size:13px;color:#806E66;">{{ summary }}</p>
+      </div>
+
+    </div>
+  </div>
+
+  <dc-import name="Footer" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  // ← Zameni po želji zasebnim Formspree ID-jem za porudžbine
+  ORDER_FORMSPREE_ID = 'xppwbnaa';
+  state = {
+    step: 1,
+    photo: null,
+    quoteCat: 'Ljubav',
+    quote: 'Ti si moj omiljeni trenutak.',
+    customQuote: '',
+    textMode: 'preset',
+    style: 'Romantični',
+    bg: '#F8F1EA',
+    format: 'Štampana i uramljena',
+    size: 'A4',
+    qty: 1,
+    added: false,
+    cName: '', cEmail: '', cPhone: '', cAddr: '', cCity: '', cZip: '', cNote: '',
+    ordering: false, orderSent: false, orderError: false, orderErrorMsg: '',
+  };
+
+  QUOTES = {
+    'Ljubav': [
+      'Ti si moj omiljeni trenutak.',
+      'Gde god da si ti, tamo je moj dom.',
+      'Sa tobom je sve lepše.',
+      'Biram tebe, danas i svaki dan.',
+      'Ti si moja najlepša misao.',
+      'U tvom zagrljaju sam pronašao/la dom.',
+      'Sve najlepše u mom životu počinje sa tobom.',
+      'Ljubav se ne meri rečima, već pogledima.',
+      'Ti si dokaz da bajke postoje.',
+      'Moje srce zna tvoje ime napamet.',
+      'Sa tobom i obično postaje čarobno.',
+      'Zauvek je počelo onog dana kad sam te sreo/la.',
+      'Ti si moja tiha luka i moja najveća avantura.',
+      'Volim te više nego juče, a manje nego sutra.',
+      'Pored tebe znam gde pripadam.',
+      'Ti si moja omiljena priča bez kraja.',
+      'Voleti znači pristati da zajedno starimo.',
+      'Ljubav je jedina stvar koju ne treba objašnjavati.',
+      'Dom je tamo gde si ti.',
+      'Pronađi osobu koja će te voleti zbog tvojih mana, a ne uprkos njima.',
+      'Gde ima ljubavi, ima i života.',
+      'Možda će i biti lepših vremena, ali ovo je naše…',
+    ],
+    'Porodica': [
+      'Zajedno smo najlepša priča.',
+      'Porodica je gde počinje ljubav.',
+      'Naš dom je pun topline.',
+      'Porodica — naše zauvek.',
+      'Gde je porodica, tu je i sreća.',
+      'Naša najveća blaga sede za istim stolom.',
+      'Zajedno kroz sve, uvek.',
+      'Ljubav koja nas povezuje nikada ne bledi.',
+      'Dom nije mesto, već ljudi koje volimo.',
+      'Uspomene koje stvaramo su naše najveće bogatstvo.',
+      'Porodica je gde život počinje, a ljubav nikad ne prestaje.',
+      'Naš mali svet, naša velika sreća.',
+      'Koreni i krila — to jedno drugom dajemo.',
+      'Najlepše priče pišu se za porodičnim stolom.',
+      'Srce porodice kuca u svakom od nas.',
+      'Zajedno smo jači, zajedno smo dom.',
+      'Kada brojiš blagodati koje imaš, majku računaj dvaput!',
+      'Iza svakog deteta koje veruje u sebe stoji roditelj koji je verovao prvi.',
+      'Dom je tamo gde su oni koje volimo.',
+      'Porodica je kompas koji nas vodi kroz život.',
+    ],
+    'Prijateljstvo': [
+      'Prijatelji su porodica koju biramo.',
+      'Hvala što si uvek tu.',
+      'Pravi prijatelj vidi tvoje srce, ne masku.',
+      'Uspomene s tobom čuvam kao najlepše blago.',
+      'Neki ljudi ostave trag u srcu zauvek.',
+      'Prijateljstvo ne meri kilometre, već trenutke.',
+      'Uz tebe je i smeh glasniji.',
+      'Hvala što veruješ u mene i kad ja ne verujem.',
+      'Pravo prijateljstvo ne traži reči.',
+      'Ti si moj razlog za osmeh u svakom danu.',
+      'Zajedno smo prošli i najlepše i najteže.',
+      'Prijatelj je onaj koji ostane kad svi odu.',
+      'Sreća je imati nekog kao što si ti.',
+      'Naše priče su najbolje kad ih delimo.',
+      'Prijateljstvo je najlepši poklon koji sam dobio/la.',
+      'Uvek pored tebe, šta god da dođe.',
+      'Budi razlog nečijeg osmeha.',
+      'Prijatelj je onaj koji zna sve o tebi i još uvek te ceni.',
+    ],
+    'Rođendan': [
+      'Još jedna godina lepih priča.',
+      'Neka se sve želje ostvare.',
+      'Neka ti srce bude puno kao i danas.',
+      'Sve najlepše na tvoj poseban dan.',
+      'Slavi sebe — zaslužuješ svaki trenutak.',
+      'Neka svaka sveća nosi po jednu ostvarenu želju.',
+      'Godine su samo brojevi, srce ostaje mlado.',
+      'Neka ti nova godina donese samo lepe priče.',
+      'Danas svet slavi tebe.',
+      'Neka ti se osmeh ne skida sa lica.',
+      'Za sve najlepše što tek dolazi.',
+      'Budi ponosan/na na sve što jesi.',
+      'Nova godina, nove avanture, isto veliko srce.',
+      'Neka ti dan bude sladak kao torta.',
+      'Srećan rođendan, dragi/a naša/naš.',
+      'Neka snovi budu veliki, a sreća još veća.',
+      'Nijedan mudar čovek nije nikad želeo da bude mlađi. Srećan rođendan!',
+    ],
+    'Zahvalnost': [
+      'Hvala na svakom trenutku.',
+      'Za sve što činiš — hvala.',
+      'Hvala što postojiš u mom životu.',
+      'Zahvalnost je pamćenje srca.',
+      'Za male stvari koje mnogo znače — hvala.',
+      'Hvala što si uvek verovao/la u mene.',
+      'Tvoja dobrota ostavlja trag zauvek.',
+      'Hvala za svaku reč, gest i pogled.',
+      'Sreća je imati kome reći hvala.',
+      'Za sve trenutke koje čuvam u srcu — hvala.',
+      'Hvala što si mi pokazao/la šta je prava ljubav.',
+      'Bez tebe ništa ne bi bilo isto — hvala.',
+      'Hvala što si moje sigurno mesto.',
+      'Za svu podršku i strpljenje — beskrajno hvala.',
+      'Zahvalan/na sam za svaki dan sa tobom.',
+      'Hvala što činiš svet lepšim mestom.',
+    ],
+    'Deca': [
+      'Mali koraci, veliki snovi…',
+      'Snovi su početak svega…',
+      'Najmanja stopala ostavljaju najveće tragove u našim srcima.',
+      'Kad porastem, biću dinosaurus!',
+      'Mama, volim te više od sladoleda!',
+      'Moje noge su se danas posvađale, pa neće u čizme!',
+      'Ne mogu sad da spavam, moram da čuvam grad od zmajeva!',
+      'Mama, čokolada je povrće jer dolazi iz biljke!',
+      'Kiša su oblaci koji plaču.',
+      'Mama, mleko je htelo da se igra na podu, pa je samo skočilo!',
+      'Ja ne skačem, ja letim kao maslačak!',
+    ],
+    'Mudre misli': [
+      'Strpljenje je ključ koji otvara sva vrata.',
+      'Muzika izražava ono što se ne može izreći rečima.',
+      'Mir dolazi iznutra. Ne traži ga spolja.',
+      'Priroda ne žuri, a ipak sve postigne.',
+      'Sreća nije cilj, već način putovanja.',
+      'Čovek putuje svetom u potrazi za onim što mu treba…',
+      'Ne predaje učitelj ono što želi — učitelj predaje ono što jeste.',
+      'Kumstvo je večna sveća koja svetli u najmračnijim trenucima…',
+    ],
+  };
+  STYLES = ['Minimalistički', 'Romantični', 'Porodični', 'Nežni pastelni', 'Dečji'];
+  BGS = ['#F8F1EA', '#EDE1D5', '#E8C7C4', '#FFFEFC'];
+  FORMATS = [
+    { label: 'Digitalni PDF', desc: 'Preuzimanje u visokoj rezoluciji', price: '790 din' },
+    { label: 'Štampana slika', desc: 'Štampa na mat papiru', price: '1.190 din' },
+    { label: 'Štampana i uramljena', desc: 'Gotov poklon, stiže poštom', price: '2.190 din' },
+  ];
+  SIZES = ['A4', 'A3', '30×40', '50×70'];
+
+  set(k, v) { this.setState({ [k]: v, added: false }); }
+
+  renderVals() {
+    const st = this.state;
+    const sel = '#A65B63', unsel = '#DCCBC0';
+
+    const stepDefs = [
+      { num: 1, label: 'Fotografija' },
+      { num: 2, label: 'Misao' },
+      { num: 3, label: 'Stil' },
+      { num: 4, label: 'Proizvod' },
+      { num: 5, label: 'Porudžbina' },
+    ];
+    const stepNav = stepDefs.map(s => {
+      const on = st.step === s.num;
+      return {
+        num: s.num, label: s.label,
+        onClick: () => this.setState({ step: s.num }),
+        bg: on ? '#A65B63' : '#FFFEFC',
+        border: on ? '#A65B63' : '#DCCBC0',
+        color: on ? '#FFFEFC' : '#806E66',
+        dot: on ? '#FFFEFC' : '#B49A7D',
+      };
+    });
+
+    const quoteCats = Object.keys(this.QUOTES).map(c => {
+      const on = st.quoteCat === c;
+      return {
+        label: c, onClick: () => this.setState({ quoteCat: c, textMode: 'preset', added: false }),
+        bg: on ? '#A65B63' : '#FFFEFC', border: on ? '#A65B63' : unsel, color: on ? '#FFFEFC' : '#806E66',
+      };
+    });
+    const presetQuotes = (this.QUOTES[st.quoteCat] || []).map(q => {
+      const on = st.textMode === 'preset' && st.quote === q;
+      return {
+        text: q,
+        onClick: () => this.setState({ quote: q, textMode: 'preset', added: false }),
+        dot: on ? '#A65B63' : '#FFFEFC', ring: on ? '#A65B63' : '#B49A7D',
+        bg: on ? '#F8F1EA' : '#FFFEFC', border: on ? '#A65B63' : unsel,
+      };
+    });
+    const TABS = [['preset', 'Predlozi citata'], ['custom', 'Moja misao'], ['none', 'Bez teksta']];
+    const textTabs = TABS.map(([k, label]) => {
+      const on = st.textMode === k;
+      return { label, onClick: () => this.setState({ textMode: k, added: false }),
+        bg: on ? '#A65B63' : '#FFFEFC', border: on ? '#A65B63' : unsel, color: on ? '#FFFEFC' : '#806E66' };
+    });
+
+    const styleOptions = this.STYLES.map(s => {
+      const on = st.style === s;
+      return { label: s, onClick: () => this.set('style', s), bg: on ? '#A65B63' : '#FFFEFC', border: on ? '#A65B63' : unsel, color: on ? '#FFFEFC' : '#806E66' };
+    });
+    const bgOptions = this.BGS.map(c => {
+      const on = st.bg === c;
+      return { color: c, onClick: () => this.set('bg', c), ring: on ? sel : unsel, ringw: on ? '2px' : '1px' };
+    });
+    const formatOptions = this.FORMATS.map(f => {
+      const on = st.format === f.label;
+      return { ...f, onClick: () => this.set('format', f.label), bg: on ? '#F8F1EA' : '#FFFEFC', border: on ? '#A65B63' : unsel };
+    });
+    // beli okvir — podrazumevani i jedini
+    const frameMap = { w: '12px', c: '#FFFFFF', pad: '18px' };
+
+    // style -> quote typography
+    const styleMap = {
+      'Minimalistički': { font: 'Manrope, sans-serif', italic: 'normal', weight: 500 },
+      'Romantični': { font: "'Dancing Script', cursive", italic: 'normal', weight: 600 },
+      'Porodični': { font: "'Cormorant Garamond', serif", italic: 'normal', weight: 600 },
+      'Nežni pastelni': { font: "'Cormorant Garamond', serif", italic: 'italic', weight: 400 },
+      'Dečji': { font: 'Caveat, cursive', italic: 'normal', weight: 600 },
+    }[st.style];
+
+    const dark = st.bg === '#4A3933';
+    const BGNAMES = { '#F8F1EA': 'krem', '#EDE1D5': 'bež', '#E8C7C4': 'puderasta', '#FFFEFC': 'bela', '#4A3933': 'topla braon' };
+    const showQuote = st.textMode !== 'none';
+    const previewQuote = st.textMode === 'custom' ? (st.customQuote || 'Tvoja misao...') : st.quote;
+    const sumCitat = st.textMode === 'none' ? 'Bez teksta' : (st.textMode === 'custom' ? (st.customQuote || '—') : st.quote);
+
+    const priceNum = { 'Digitalni PDF': 790, 'Štampana slika': 1190, 'Štampana i uramljena': 2190 }[st.format] || 0;
+    const total = priceNum * st.qty;
+    const totalPrice = total.toLocaleString('sr-RS') + ' din';
+    const needsAddress = st.format !== 'Digitalni PDF';
+
+    return {
+      isStep1: st.step === 1, isStep2: st.step === 2, isStep3: st.step === 3, isStep4: st.step === 4, isStep5: st.step === 5,
+      stepNav, quoteCats, presetQuotes, textTabs, styleOptions, bgOptions, formatOptions,
+      showPreset: st.textMode === 'preset', showCustomInput: st.textMode === 'custom', showNone: st.textMode === 'none',
+      showQuote, hideQuote: !showQuote,
+      photo: st.photo, noPhoto: !st.photo,
+      sumSlika: st.photo ? 'Vaša fotografija' : 'iz galerije',
+      sumCitat, sumStil: st.style, sumBoje: BGNAMES[st.bg] || 'krem', sumFormat: st.format,
+      customQuote: st.customQuote, qty: st.qty, added: st.added,
+      totalPrice, needsAddress,
+      cName: st.cName, cEmail: st.cEmail, cPhone: st.cPhone, cAddr: st.cAddr, cCity: st.cCity, cZip: st.cZip, cNote: st.cNote,
+      ordering: st.ordering, orderSent: st.orderSent, orderError: st.orderError, orderErrorMsg: st.orderErrorMsg,
+      orderBtnLabel: st.ordering ? 'Šaljem…' : 'Pošalji porudžbinu',
+      orderBtnOpacity: st.ordering ? 0.6 : 1,
+      onCName: (e) => this.setState({ cName: e.target.value, orderError: false }),
+      onCEmail: (e) => this.setState({ cEmail: e.target.value, orderError: false }),
+      onCPhone: (e) => this.setState({ cPhone: e.target.value, orderError: false }),
+      onCAddr: (e) => this.setState({ cAddr: e.target.value, orderError: false }),
+      onCCity: (e) => this.setState({ cCity: e.target.value, orderError: false }),
+      onCZip: (e) => this.setState({ cZip: e.target.value, orderError: false }),
+      onCNote: (e) => this.setState({ cNote: e.target.value }),
+      next: () => this.setState(s => ({ step: Math.min(5, s.step + 1), added: false })),
+      prev: () => this.setState(s => ({ step: Math.max(1, s.step - 1), added: false })),
+      onPhoto: (e) => {
+        const f = e.target.files && e.target.files[0];
+        if (!f) return;
+        const r = new FileReader();
+        r.onload = () => this.setState({ photo: r.result, added: false });
+        r.readAsDataURL(f);
+      },
+      clearPhoto: () => this.setState({ photo: null }),
+      onCustom: (e) => this.setState({ customQuote: e.target.value, textMode: 'custom', added: false }),
+      incQty: () => this.setState(s => ({ qty: s.qty + 1, added: false })),
+      decQty: () => this.setState(s => ({ qty: Math.max(1, s.qty - 1), added: false })),
+      addToCart: () => this.setState({ added: true }),
+      submitOrder: async () => {
+        if (st.ordering) return;
+        const req = [st.cName, st.cEmail, st.cPhone];
+        if (needsAddress) req.push(st.cAddr, st.cCity);
+        if (req.some(v => !String(v).trim())) {
+          this.setState({ orderError: true, orderErrorMsg: 'Popuni obavezna polja označena zvezdicom (*).' });
+          return;
+        }
+        this.setState({ ordering: true, orderError: false });
+        try {
+          const f = new FormData();
+          f.append('_subject', 'Nova PORUDŽBINA — Pokloni misao');
+          f.append('Ime', st.cName);
+          f.append('email', st.cEmail);
+          f.append('Telefon', st.cPhone);
+          f.append('Adresa', needsAddress ? (st.cAddr + ', ' + st.cCity + ' ' + st.cZip) : 'Digitalni — bez isporuke');
+          f.append('Format', st.format);
+          f.append('Kolicina', String(st.qty));
+          f.append('Ukupno', totalPrice);
+          f.append('Citat', sumCitat);
+          f.append('Stil', st.style);
+          f.append('Boja pozadine', BGNAMES[st.bg] || st.bg);
+          f.append('Napomena', st.cNote || '—');
+          f.append('Fotografija', 'Kupac šalje mejlom na poklonimisao@gmail.com');
+          const res = await fetch('https://formspree.io/f/' + this.ORDER_FORMSPREE_ID, {
+            method: 'POST', headers: { 'Accept': 'application/json' }, body: f,
+          });
+          if (res.ok) this.setState({ orderSent: true, ordering: false });
+          else this.setState({ orderError: true, ordering: false, orderErrorMsg: 'Slanje nije uspelo. Pokušaj ponovo ili nam piši na poklonimisao@gmail.com.' });
+        } catch (e) {
+          this.setState({ orderError: true, ordering: false, orderErrorMsg: 'Slanje nije uspelo. Pokušaj ponovo ili nam piši na poklonimisao@gmail.com.' });
+        }
+      },
+      editSettings: () => this.setState({ step: 1, added: false }),
+      frameW: frameMap.w, frameC: frameMap.c, matPad: frameMap.pad,
+      canvasBg: st.bg,
+      quoteFont: styleMap.font, quoteStyle: styleMap.italic, quoteWeight: styleMap.weight,
+      quoteColor: dark ? '#F8F1EA' : '#4A3933',
+      previewQuote,
+      summary: st.format + ' · ' + st.size + ' · ' + st.qty + ' kom.',
+    };
+  }
+}
+</script>
+</body>
+</html>

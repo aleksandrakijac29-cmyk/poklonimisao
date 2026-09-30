@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700&family=Manrope:wght@300;400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  a { color: #A65B63; text-decoration: none; }
+  a:hover { color: #4A3933; }
+  @keyframes stepGrow { from { opacity:0; transform:scale(.9); } to { opacity:1; transform:scale(1); } }
+</style>
+<style>.sc-host[data-sc-name="Header"]{display:contents;}</style>
+</helmet>
+<div style="background:#FFFEFC;font-family:Manrope,sans-serif;color:#4A3933;-webkit-font-smoothing:antialiased;">
+  <dc-import name="Header" active="kako" hint-size="100%,72px"></dc-import>
+
+  <div style="max-width:900px;margin:0 auto;padding:clamp(40px,6vw,72px) clamp(16px,4vw,40px) clamp(56px,7vw,96px);">
+    <div style="text-align:center;margin-bottom:clamp(40px,5vw,60px);">
+      <p style="margin:0 0 12px;font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#B49A7D;">Jednostavno i brzo</p>
+      <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,5vw,52px);line-height:1.05;color:#4A3933;">Kako poručiti</h1>
+    </div>
+
+    <!-- KORACI -->
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <div style="display:flex;gap:22px;padding:24px 12px;border-bottom:1px solid #DCCBC0;border-radius:6px;transition:transform .25s ease,background .25s ease;opacity:0;animation:stepGrow .5s ease 0.00s both;" style-hover="transform:scale(1.02);background:#F8F1EA;">
+        <span style="flex:0 0 auto;width:48px;height:48px;border-radius:50%;background:#F8F1EA;border:1px solid #B49A7D;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;color:#A65B63;">1</span>
+        <div><h3 style="margin:6px 0 6px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:23px;color:#4A3933;">Izaberi vrstu poklona</h3><p style="margin:0;font-size:15px;line-height:1.7;color:#806E66;">Pregledaj kolekciju i odaberi predložak koji ti se dopada.</p></div>
+      </div>
+      <div style="display:flex;gap:22px;padding:24px 12px;border-bottom:1px solid #DCCBC0;border-radius:6px;transition:transform .25s ease,background .25s ease;opacity:0;animation:stepGrow .5s ease 0.12s both;" style-hover="transform:scale(1.02);background:#F8F1EA;">
+        <span style="flex:0 0 auto;width:48px;height:48px;border-radius:50%;background:#F8F1EA;border:1px solid #B49A7D;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;color:#A65B63;">2</span>
+        <div><h3 style="margin:6px 0 6px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:23px;color:#4A3933;">Dodaj fotografiju i poruku</h3><p style="margin:0;font-size:15px;line-height:1.7;color:#806E66;">Otpremi sliku i upiši misao ili izaberi gotov citat.</p></div>
+      </div>
+      <div style="display:flex;gap:22px;padding:24px 12px;border-bottom:1px solid #DCCBC0;border-radius:6px;transition:transform .25s ease,background .25s ease;opacity:0;animation:stepGrow .5s ease 0.24s both;" style-hover="transform:scale(1.02);background:#F8F1EA;">
+        <span style="flex:0 0 auto;width:48px;height:48px;border-radius:50%;background:#F8F1EA;border:1px solid #B49A7D;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;color:#A65B63;">3</span>
+        <div><h3 style="margin:6px 0 6px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:23px;color:#4A3933;">Izaberi stil i format</h3><p style="margin:0;font-size:15px;line-height:1.7;color:#806E66;">Podesi boje i okvir, pa izaberi digitalno, štampano ili uramljeno.</p></div>
+      </div>
+      <div style="display:flex;gap:22px;padding:24px 12px;border-bottom:1px solid #DCCBC0;border-radius:6px;transition:transform .25s ease,background .25s ease;opacity:0;animation:stepGrow .5s ease 0.36s both;" style-hover="transform:scale(1.02);background:#F8F1EA;">
+        <span style="flex:0 0 auto;width:48px;height:48px;border-radius:50%;background:#F8F1EA;border:1px solid #B49A7D;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;color:#A65B63;">4</span>
+        <div><h3 style="margin:6px 0 6px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:23px;color:#4A3933;">Pregledaj dizajn</h3><p style="margin:0;font-size:15px;line-height:1.7;color:#806E66;">Proveri pregled uživo i uveri se da sve izgleda savršeno.</p></div>
+      </div>
+      <div style="display:flex;gap:22px;padding:24px 12px;border-bottom:1px solid #DCCBC0;border-radius:6px;transition:transform .25s ease,background .25s ease;opacity:0;animation:stepGrow .5s ease 0.48s both;" style-hover="transform:scale(1.02);background:#F8F1EA;">
+        <span style="flex:0 0 auto;width:48px;height:48px;border-radius:50%;background:#F8F1EA;border:1px solid #B49A7D;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;color:#A65B63;">5</span>
+        <div><h3 style="margin:6px 0 6px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:23px;color:#4A3933;">Pošalji porudžbinu</h3><p style="margin:0;font-size:15px;line-height:1.7;color:#806E66;">Unesi podatke za isporuku i potvrdi narudžbinu.</p></div>
+      </div>
+      <div style="display:flex;gap:22px;padding:24px 12px;border-radius:6px;transition:transform .25s ease,background .25s ease;opacity:0;animation:stepGrow .5s ease 0.60s both;" style-hover="transform:scale(1.02);background:#F8F1EA;">
+        <span style="flex:0 0 auto;width:48px;height:48px;border-radius:50%;background:#F8F1EA;border:1px solid #B49A7D;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;color:#A65B63;">6</span>
+        <div><h3 style="margin:6px 0 6px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:23px;color:#4A3933;">Primi svoj poklon</h3><p style="margin:0;font-size:15px;line-height:1.7;color:#806E66;">Digitalni fajl stiže na mejl, a štampani poklon poštom.</p></div>
+      </div>
+    </div>
+
+    <!-- INFO -->
+    <div style="margin-top:clamp(48px,6vw,72px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.5vw,24px);align-items:stretch;">
+      <div style="background:#F8F1EA;border:1px solid #DCCBC0;padding:28px;min-height:190px;display:flex;flex-direction:column;">
+        <h4 style="margin:0 0 10px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:#4A3933;">Digitalni PDF</h4>
+        <p style="margin:0;font-size:14.5px;line-height:1.7;color:#806E66;">Datoteka visoke rezolucije spremna za štampu. Stiže na mejl nakon izrade.</p>
+      </div>
+      <div style="background:#F8F1EA;border:1px solid #DCCBC0;padding:28px;min-height:190px;display:flex;flex-direction:column;">
+        <h4 style="margin:0 0 10px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:#4A3933;">Štampa i uramljivanje</h4>
+        <p style="margin:0;font-size:14.5px;line-height:1.7;color:#806E66;">Kvalitetan mat papir i elegantan beli okvir.</p>
+      </div>
+      <div style="background:#F8F1EA;border:1px solid #DCCBC0;padding:28px;min-height:190px;display:flex;flex-direction:column;">
+        <h4 style="margin:0 0 10px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:#4A3933;">Isporuka poštom</h4>
+        <p style="margin:0;font-size:14.5px;line-height:1.7;color:#806E66;">Svaki štampani poklon pažljivo pakujemo i šaljemo kurirskom službom.</p>
+      </div>
+      <div style="background:#F8F1EA;border:1px solid #DCCBC0;padding:28px;min-height:190px;display:flex;flex-direction:column;">
+        <h4 style="margin:0 0 10px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:#4A3933;">Rokovi izrade</h4>
+        <p style="margin:0;font-size:14.5px;line-height:1.7;color:#806E66;">Digitalni poklon za 1–2 dana, štampani i uramljeni za 3–5 radnih dana.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(44px,5vw,64px);text-align:center;">
+      <a href="Kreiraj.dc.html" style="display:inline-block;background:#A65B63;color:#FFFEFC;padding:16px 34px;border-radius:100px;font-weight:600;font-size:15px;" style-hover="background:#8f4d54;color:#FFFEFC;">Kreiraj svoj poklon</a>
+    </div>
+
+    <div style="margin-top:clamp(40px,5vw,60px);text-align:center;background:#EDE1D5;padding:clamp(32px,4vw,48px);border-radius:3px;">
+      <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(24px,3vw,32px);color:#4A3933;">Imaš pitanje pre porudžbine?</h3>
+      <p style="margin:12px 0 24px;font-size:15px;line-height:1.7;color:#806E66;">Tu smo za svaku pomoć oko tvog poklona.</p>
+      <a href="Kontakt.dc.html" style="display:inline-block;background:#A65B63;color:#FFFEFC;padding:15px 30px;border-radius:2px;font-weight:600;font-size:15px;" style-hover="background:#8f4d54;color:#FFFEFC;">Kontaktiraj nas</a>
+    </div>
+  </div>
+
+  <dc-import name="Footer" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  a { color: #A65B63; text-decoration: none; }
+  a:hover { color: #4A3933; }
+</style>
+</helmet>
+<header style="position:sticky;top:0;z-index:200;background:#FFFEFC;border-bottom:1px solid #DCCBC0;">
+  <div style="max-width:1240px;margin:0 auto;padding:16px clamp(16px,4vw,40px);display:flex;align-items:center;justify-content:space-between;gap:20px;">
+    <a href="Pocetna.dc.html" style="display:flex;flex-direction:column;gap:2px;white-space:nowrap;color:#4A3933;">
+      <span style="font-family:Caveat,cursive;font-size:29px;font-weight:600;color:#4A3933;display:flex;align-items:center;gap:7px;line-height:1;">Pokloni misao</span>
+      <span style="font-family:Manrope,sans-serif;font-size:11px;font-weight:500;letter-spacing:.04em;color:#806E66;">Personalizovani pokloni sa porukom</span>
+    </a>
+
+    <sc-if value="{{ showDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;gap:clamp(16px,2vw,28px);align-items:center;">
+        <sc-for list="{{ regular }}" as="item" hint-placeholder-count="4">
+          <a href="{{ item.href }}" style="font-family:Manrope,sans-serif;font-size:14.5px;font-weight:500;letter-spacing:.01em;color:{{ item.color }};padding-bottom:3px;border-bottom:1px solid {{ item.underline }};" style-hover="color:#A65B63;">{{ item.label }}</a>
+        </sc-for>
+        <a href="{{ featured.href }}" style="display:inline-flex;align-items:center;gap:7px;font-family:Manrope,sans-serif;font-size:14px;font-weight:600;letter-spacing:.01em;color:#A65B63;background:#F8F1EA;border:1px solid #E8C7C4;padding:8px 16px;border-radius:100px;white-space:nowrap;" style-hover="background:#E8C7C4;color:#4A3933;">
+          <span style="font-size:13px;">&#9825;</span>{{ featured.label }}
+        </a>
+        <a href="Kreiraj.dc.html" style="display:inline-flex;align-items:center;gap:7px;font-family:Manrope,sans-serif;font-size:14px;font-weight:600;letter-spacing:.01em;color:#FFFEFC;background:#A65B63;padding:9px 20px;border-radius:100px;white-space:nowrap;" style-hover="background:#8f4d54;color:#FFFEFC;">Kreiraj svoj poklon</a>
+      </nav>
+    </sc-if>
+
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="Proizvodi.dc.html" aria-label="Pretraga" style="display:inline-flex;color:#4A3933;" style-hover="color:#A65B63;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+      </a>
+      <a href="Kontakt.dc.html" aria-label="Nalog" style="display:inline-flex;color:#4A3933;" style-hover="color:#A65B63;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/></svg>
+      </a>
+      <a href="Kreiraj.dc.html" aria-label="Korpa" style="display:inline-flex;color:#4A3933;" style-hover="color:#A65B63;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      </a>
+      <sc-if value="{{ showMobile }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ toggle }}" aria-label="Meni" style="display:inline-flex;align-items:center;justify-content:center;background:none;border:none;padding:4px;cursor:pointer;color:#4A3933;margin-left:2px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+        </button>
+      </sc-if>
+    </div>
+  </div>
+
+  <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+    <nav style="border-top:1px solid #DCCBC0;background:#F8F1EA;padding:8px clamp(16px,4vw,40px) 18px;display:flex;flex-direction:column;">
+      <sc-for list="{{ items }}" as="item" hint-placeholder-count="5">
+        <a href="{{ item.href }}" style="font-family:Manrope,sans-serif;font-size:16px;font-weight:500;color:#4A3933;padding:13px 2px;border-bottom:1px solid #DCCBC0;">{{ item.label }}</a>
+      </sc-for>
+      <a href="Kreiraj.dc.html" style="margin-top:16px;text-align:center;font-family:Manrope,sans-serif;font-size:15px;font-weight:600;color:#FFFEFC;background:#A65B63;padding:13px;border-radius:2px;">Kreiraj svoj poklon</a>
+    </nav>
+  </sc-if>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:140},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;pocetna&quot;,&quot;proizvodi&quot;,&quot;misli&quot;,&quot;kako&quot;,&quot;kontakt&quot;],&quot;default&quot;:&quot;pocetna&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { open: false, isMobile: false };
+  componentDidMount() {
+    this._check = () => {
+      const m = window.innerWidth < 1080;
+      this.setState(s => ({ isMobile: m, open: m ? s.open : false }));
+    };
+    this._check();
+    window.addEventListener('resize', this._check);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._check); }
+  renderVals() {
+    const active = this.props.active || '';
+    const items = [
+      { href: 'Pocetna.dc.html', label: 'Početna', key: 'pocetna' },
+      { href: 'Proizvodi.dc.html', label: 'Proizvodi', key: 'proizvodi' },
+      { href: 'MisliMalihGenijalaca.dc.html', label: 'Misli malih genijalaca', key: 'misli' },
+      { href: 'KakoPoruciti.dc.html', label: 'Kako poručiti', key: 'kako' },
+      { href: 'Kontakt.dc.html', label: 'Kontakt', key: 'kontakt' },
+    ].map(it => ({
+      ...it,
+      featured: it.key === 'misli',
+      color: it.key === active ? '#A65B63' : '#4A3933',
+      underline: it.key === active ? '#A65B63' : 'transparent',
+    }));
+    const regular = items.filter(it => !it.featured);
+    const featured = items.find(it => it.featured);
+    return {
+      items, regular, featured,
+      showDesktop: !this.state.isMobile,
+      showMobile: this.state.isMobile,
+      open: this.state.open,
+      toggle: () => this.setState(s => ({ open: !s.open })),
+    };
+  }
+}
+</script>
+</body>
+</html>

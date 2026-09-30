@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  a { color: #A65B63; text-decoration: none; }
+  a:hover { color: #4A3933; }
+  @keyframes giftDrop {
+    0% { transform: translateY(-440px); opacity: 0; }
+    14% { opacity: 1; }
+    62% { transform: translateY(0); }
+    78% { transform: translateY(-18px); }
+    100% { transform: translateY(0); }
+  }
+  @keyframes lidOpen {
+    0% { transform: translateY(0) rotate(0); opacity: 1; }
+    100% { transform: translateY(-140px) rotate(-11deg); opacity: 0; }
+  }
+  @keyframes bodyOpen {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(96px); opacity: 0; }
+  }
+  @keyframes bulbDraw {
+    0% { stroke-dashoffset: var(--len); }
+    100% { stroke-dashoffset: 0; }
+  }
+  @keyframes bulbGlow {
+    0%,100% { opacity: .15; transform: scale(.9); }
+    50% { opacity: .55; transform: scale(1.08); }
+  }
+  @keyframes bulbFlicker {
+    0%,42% { opacity: 0; }
+    50%,64% { opacity: 1; }
+    58% { opacity: .35; }
+    100% { opacity: 1; }
+  }
+  .ideaBulb .stroke { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); }
+  .reveal.in .ideaBulb .stroke { animation: bulbDraw 1.1s ease forwards; }
+  .reveal.in .ideaBulb .rays { animation: bulbFlicker 1.4s ease forwards; }
+  .reveal.in .ideaBulb .halo { transform-origin: center; animation: bulbGlow 3.2s ease-in-out infinite; }
+  @keyframes heroFade { 0% { opacity: 0; } 100% { opacity: 1; } }
+  @keyframes heroZoom {
+    0% { transform: scale(1.14); opacity: 0; }
+    18% { opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes heroReveal {
+    0% { transform: scale(.3) translateY(16%); opacity: 0; }
+    35% { opacity: 1; }
+    100% { transform: none; opacity: 1; }
+  }
+  @keyframes heroCurtain {
+    0% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+  }
+  @keyframes giftSway {
+    0%,100% { transform: rotate(-1.4deg); }
+    50% { transform: rotate(1.4deg); }
+  }
+  @keyframes floatBlob {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(18px,-22px) scale(1.08); }
+  }
+  @keyframes floatBlob2 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(-20px,16px) scale(1.06); }
+  }
+  @keyframes heroGlowIn {
+    0% { opacity: 0; transform: scale(.8); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes captionFade {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes caretBlink { 0%,50% { opacity: 1; } 50.01%,100% { opacity: 0; } }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+  .sc-host[data-sc-name="Header"] { display: contents; }
+</style>
+</helmet>
+<div style="background:#FFFEFC;font-family:Manrope,sans-serif;color:#4A3933;-webkit-font-smoothing:antialiased;">
+  <dc-import name="Header" active="pocetna" hint-size="100%,80px"></dc-import>
+
+  <!-- HERO -->
+  <section style="position:relative;overflow:hidden;min-height:clamp(460px,64vh,680px);background:#F1ECE6;border-bottom:1px solid #DCCBC0;">
+    <div aria-hidden="true" style="position:absolute;inset:0;background-image:url('uploads/A_high-end,_minimalist_website_hero_20260929103758-e2181d78.jpg');background-size:cover;background-position:center;transform-origin:38% 55%;animation:heroFade 1.2s ease .1s both;"></div>
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(255,254,252,0) 30%,rgba(255,254,252,.5) 54%,rgba(255,254,252,.9) 80%);"></div>
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 58% 70% at 82% 50%,rgba(255,254,252,.72) 0%,transparent 70%);"></div>
+    <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,80px) clamp(16px,4vw,40px);min-height:inherit;display:flex;justify-content:flex-end;align-items:center;">
+      <div style="max-width:460px;animation:heroGlowIn .9s ease .1s both;">
+        <div style="display:inline-flex;align-items:center;gap:9px;margin-bottom:22px;padding:8px 16px;border:1px solid #DCCBC0;border-radius:100px;background:rgba(255,254,252,.75);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#A65B63;"><span style="width:6px;height:6px;border-radius:50%;background:#A65B63;"></span>Ne poklanjaj stvar, pokloni uspomenu</div>
+        <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(48px,7vw,80px);line-height:1;color:#4A3933;letter-spacing:-.01em;">Pokloni misao</h1>
+        <p id="hero-tagline" style="margin:20px 0 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(23px,3vw,30px);line-height:1.35;color:#A65B63;">Jer svaka slika nosi priču.</p>
+        <p style="margin:20px 0 0;max-width:440px;font-size:16px;line-height:1.75;color:#5F5049;">Personalizovani pokloni koji spajaju lepe slike, iskrene misli i vaše posebne ljude.</p>
+        <div style="margin-top:36px;display:flex;flex-wrap:wrap;align-items:center;gap:22px;">
+          <a href="Kreiraj.dc.html" style="display:inline-block;background:#A65B63;color:#FFFEFC;padding:16px 32px;border-radius:100px;font-weight:600;font-size:15px;letter-spacing:.01em;" style-hover="background:#8f4d54;color:#FFFEFC;">Kreiraj svoj poklon</a>
+          <a href="Proizvodi.dc.html" style="font-size:15px;font-weight:600;color:#A65B63;">Pogledaj inspiraciju &rarr;</a>
+        </div>
+        <div style="margin-top:40px;padding-top:26px;border-top:1px solid rgba(166,91,99,.22);display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.5vw,32px);text-align:center;">
+          <div>
+            <div style="min-height:32px;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#4A3933;">Jedinstveno</div>
+            <p style="margin:6px 0 0;font-size:13px;line-height:1.5;color:#5F5049;">Originalan poklon, samo za njih</p>
+          </div>
+          <div style="border-left:1px solid rgba(166,91,99,.18);border-right:1px solid rgba(166,91,99,.18);">
+            <p style="margin:0;min-height:32px;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#4A3933;">A4 &middot; beli ram</p>
+            <p style="margin:6px 0 0;font-size:13px;line-height:1.5;color:#5F5049;">Kvalitetan mat papir</p>
+          </div>
+          <div>
+            <p style="margin:0;min-height:32px;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#4A3933;">2&ndash;4 dana</p>
+            <p style="margin:6px 0 0;font-size:13px;line-height:1.5;color:#5F5049;">Izrada i dostava</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE STRIP -->
+  <section class="reveal" style="max-width:1240px;margin:0 auto;padding:clamp(48px,6vw,80px) clamp(16px,4vw,40px);">
+    <div style="text-align:center;max-width:600px;margin:0 auto clamp(32px,4vw,48px);">
+      <p style="margin:0 0 12px;font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#B49A7D;">Kako funkcioniše</p>
+      <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(32px,4.5vw,46px);color:#4A3933;">Do svog poklona u četiri koraka</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(18px,2.4vw,28px);">
+      <div style="position:relative;background:#FFFEFC;border:1px solid #DCCBC0;border-radius:6px;padding:40px 26px 32px;text-align:center;box-shadow:0 20px 44px -34px rgba(74,57,51,.5);transition:transform .25s ease,box-shadow .25s ease;" style-hover="transform:translateY(-6px) scale(1.04);box-shadow:0 30px 54px -30px rgba(74,57,51,.55);">
+        <span style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);width:44px;height:44px;border-radius:50%;background:#A65B63;color:#FFFEFC;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;box-shadow:0 8px 18px -8px rgba(166,91,99,.7);">1</span>
+        <div style="width:52px;height:52px;margin:0 auto 18px;border:1px solid #DCCBC0;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#A65B63;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 style="margin:0 0 6px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:#4A3933;">Dodaj svoju sliku</h3>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#806E66;">ili izaberi iz galerije</p>
+      </div>
+      <div style="position:relative;background:#FFFEFC;border:1px solid #DCCBC0;border-radius:6px;padding:40px 26px 32px;text-align:center;box-shadow:0 20px 44px -34px rgba(74,57,51,.5);transition:transform .25s ease,box-shadow .25s ease;" style-hover="transform:translateY(-6px) scale(1.04);box-shadow:0 30px 54px -30px rgba(74,57,51,.55);">
+        <span style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);width:44px;height:44px;border-radius:50%;background:#A65B63;color:#FFFEFC;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;box-shadow:0 8px 18px -8px rgba(166,91,99,.7);">2</span>
+        <div style="width:52px;height:52px;margin:0 auto 18px;border:1px solid #DCCBC0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:34px;line-height:1;color:#A65B63;padding-top:14px;">&bdquo;</div>
+        <h3 style="margin:0 0 6px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:#4A3933;">Izaberi citat</h3>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#806E66;">ili napiši svoju misao</p>
+      </div>
+      <div style="position:relative;background:#FFFEFC;border:1px solid #DCCBC0;border-radius:6px;padding:40px 26px 32px;text-align:center;box-shadow:0 20px 44px -34px rgba(74,57,51,.5);transition:transform .25s ease,box-shadow .25s ease;" style-hover="transform:translateY(-6px) scale(1.04);box-shadow:0 30px 54px -30px rgba(74,57,51,.55);">
+        <span style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);width:44px;height:44px;border-radius:50%;background:#A65B63;color:#FFFEFC;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;box-shadow:0 8px 18px -8px rgba(166,91,99,.7);">3</span>
+        <div style="width:52px;height:52px;margin:0 auto 18px;border:1px solid #DCCBC0;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:3px;">
+          <span style="width:9px;height:9px;border-radius:50%;background:#E8C7C4;"></span>
+          <span style="width:9px;height:9px;border-radius:50%;background:#A65B63;"></span>
+          <span style="width:9px;height:9px;border-radius:50%;background:#B49A7D;"></span>
+        </div>
+        <h3 style="margin:0 0 6px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:#4A3933;">Odaberi stil i boje</h3>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#806E66;">mi pretvaramo u umetnost</p>
+      </div>
+      <div style="position:relative;background:#FFFEFC;border:1px solid #DCCBC0;border-radius:6px;padding:40px 26px 32px;text-align:center;box-shadow:0 20px 44px -34px rgba(74,57,51,.5);transition:transform .25s ease,box-shadow .25s ease;" style-hover="transform:translateY(-6px) scale(1.04);box-shadow:0 30px 54px -30px rgba(74,57,51,.55);">
+        <span style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);width:44px;height:44px;border-radius:50%;background:#A65B63;color:#FFFEFC;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;box-shadow:0 8px 18px -8px rgba(166,91,99,.7);">4</span>
+        <div style="width:52px;height:52px;margin:0 auto 18px;border:1px solid #DCCBC0;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#A65B63;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="1.5"/><path d="M3 12h18"/><path d="M12 8v13"/><path d="M12 8S9 3 6.5 4.2 9 8 12 8zM12 8s3-5 5.5-3.8S15 8 12 8z"/></svg>
+        </div>
+        <h3 style="margin:0 0 6px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:#4A3933;">Dobij svoj poklon</h3>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#806E66;">digitalno ili štampan i uokviren</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIJA -->
+  <section class="reveal" style="background:#F8F1EA;border-top:1px solid #DCCBC0;border-bottom:1px solid #DCCBC0;">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(52px,7vw,88px) clamp(16px,4vw,40px);">
+      <div style="text-align:center;max-width:600px;margin:0 auto clamp(36px,4vw,52px);">
+        <p style="margin:0 0 12px;font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#B49A7D;">Inspiracija</p>
+        <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(32px,4.5vw,46px);color:#4A3933;">Naši najlepši pokloni</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2vw,24px);align-items:start;">
+        <div style="box-shadow:0 20px 44px -30px rgba(74,57,51,.5);">
+          <img src="uploads/Grandparents_playing_with_grandc..._20260927102511.jpg" alt="Baka i deka igraju sa unukom — „Kad baka i deka prođu kroz vrata, disciplina izlazi kroz prozor.“" style="display:block;width:100%;aspect-ratio:4/5;object-fit:cover;">
+        </div>
+        <div style="box-shadow:0 20px 44px -30px rgba(74,57,51,.5);">
+          <img src="uploads/Mother_and_daughter_embracing_20260928141932.jpg" alt="Majka i ćerka u zagrljaju — „Dom je tamo gde su oni koje volimo.“" style="display:block;width:100%;aspect-ratio:4/5;object-fit:cover;">
+        </div>
+        <div style="box-shadow:0 20px 44px -30px rgba(74,57,51,.5);">
+          <img src="uploads/Family_laughing_around_dinner_table_20260928141920.jpg" alt="Porodica za trpezom — „Porodica je kompas koji nas vodi kroz život.“" style="display:block;width:100%;aspect-ratio:4/5;object-fit:cover;">
+        </div>
+        <div style="box-shadow:0 20px 44px -30px rgba(74,57,51,.5);">
+          <img src="uploads/Girl_holding_cookie_20260928140056-e50c652e.jpg" alt="Devojčica sa keksom — „Mama, čokolada je povrće jer dolazi iz biljke!“ Sofija, 4 godine" style="display:block;width:100%;aspect-ratio:4/5;object-fit:cover;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISLI MALIH GENIJALACA -->
+  <section class="reveal" style="max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,96px) clamp(16px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(40px,5vw,72px);align-items:center;">
+    <div>
+      <svg class="ideaBulb" width="128" height="58" viewBox="0 0 128 58" fill="none" style="display:block;margin:0 0 10px;color:#A65B63;overflow:visible;">
+        <g transform="translate(20 34)">
+          <circle class="halo" cx="0" cy="-2" r="17" fill="#A65B63" opacity="0"/>
+          <path class="stroke" style="--len:70" d="M-8 6 C-13 -1 -13 -10 -6 -14 C1 -18 11 -14 12 -5 C12 0 9 3 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path class="stroke" style="--len:16" d="M-5 7 L5 7 M-4 11 L4 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path class="stroke" style="--len:16" d="M-2 -8 L0 -3 L2 -6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <g class="rays" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M0 -26 L0 -32"/><path d="M15 -19 L20 -23"/><path d="M-15 -19 L-20 -23"/>
+          </g>
+        </g>
+        <g transform="translate(66 30) scale(.82)">
+          <circle class="halo" cx="0" cy="-2" r="17" fill="#A65B63" opacity="0" style="animation-delay:.6s"/>
+          <path class="stroke" style="--len:70;animation-delay:.25s" d="M-8 6 C-13 -1 -13 -10 -6 -14 C1 -18 11 -14 12 -5 C12 0 9 3 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path class="stroke" style="--len:16;animation-delay:.25s" d="M-5 7 L5 7 M-4 11 L4 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path class="stroke" style="--len:16;animation-delay:.25s" d="M-2 -8 L0 -3 L2 -6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <g class="rays" style="animation-delay:.35s" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M0 -26 L0 -32"/><path d="M15 -19 L20 -23"/><path d="M-15 -19 L-20 -23"/>
+          </g>
+        </g>
+        <g transform="translate(104 33) scale(.66)">
+          <circle class="halo" cx="0" cy="-2" r="17" fill="#A65B63" opacity="0" style="animation-delay:1.2s"/>
+          <path class="stroke" style="--len:70;animation-delay:.5s" d="M-8 6 C-13 -1 -13 -10 -6 -14 C1 -18 11 -14 12 -5 C12 0 9 3 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path class="stroke" style="--len:16;animation-delay:.5s" d="M-5 7 L5 7 M-4 11 L4 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path class="stroke" style="--len:16;animation-delay:.5s" d="M-2 -8 L0 -3 L2 -6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <g class="rays" style="animation-delay:.6s" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M0 -26 L0 -32"/><path d="M15 -19 L20 -23"/><path d="M-15 -19 L-20 -23"/>
+          </g>
+        </g>
+      </svg>
+      <p style="margin:0 0 14px;font-family:Caveat,cursive;font-size:26px;color:#A65B63;">Misli malih genijalaca</p>
+      <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(32px,4.5vw,48px);line-height:1.1;color:#4A3933;">Male misli.<br>Velike uspomene.</h2>
+      <p style="margin:22px 0 0;max-width:440px;font-size:16px;line-height:1.75;color:#806E66;">Dečji biseri, iskrene izjave i male mudrosti koje zaslužuju da ostanu zauvek.</p>
+      <a href="MisliMalihGenijalaca.dc.html" style="margin-top:32px;display:inline-block;background:#A65B63;color:#FFFEFC;padding:15px 30px;border-radius:100px;font-weight:600;font-size:15px;" style-hover="background:#8f4d54;color:#FFFEFC;">Kreiraj uspomenu deteta</a>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
+      <div style="background:#FFFEFC;padding:12px;box-shadow:0 20px 44px -30px rgba(74,57,51,.5);">
+        <img src="uploads/1.jpg" alt="Dečak slika i drži dinosaurusa — „Kad porastem, biću dinosaurus!“ Aleksa, 3 godine" style="display:block;width:100%;height:auto;">
+      </div>
+      <div style="background:#FFFEFC;padding:12px;box-shadow:0 20px 44px -30px rgba(74,57,51,.5);margin-top:0;">
+        <img src="uploads/GridArt_20260928_103850493.jpg" alt="Dečak sa sladoledom — „Mama, volim te više od sladoleda!“ Luka, 5 godina" style="display:block;width:100%;height:auto;">
+      </div>
+    </div>
+  </section>
+
+  <!-- KAKO DO SVOG POKLONA -->
+  <section class="reveal" style="background:#F8F1EA;border-top:1px solid #DCCBC0;">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(52px,7vw,88px) clamp(16px,4vw,40px);">
+      <div style="text-align:center;max-width:600px;margin:0 auto clamp(36px,4vw,52px);">
+        <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(32px,4.5vw,46px);color:#4A3933;">Kako do svog poklona?</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(20px,3vw,28px);">
+        <div style="background:#FFFEFC;border:1px solid #DCCBC0;padding:36px 28px;text-align:center;">
+          <div style="width:48px;height:48px;margin:0 auto 18px;color:#A65B63;display:flex;align-items:center;justify-content:center;">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8M12 17v4" stroke-linecap="round"/></svg>
+          </div>
+          <h3 style="margin:0 0 10px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:23px;color:#4A3933;">Digitalno</h3>
+          <p style="margin:0 0 22px;font-size:14px;line-height:1.7;color:#806E66;">Preuzmi u PDF formatu odmah nakon porudžbine.</p>
+          <a href="Kreiraj.dc.html" style="display:inline-block;border:1px solid #A65B63;color:#A65B63;padding:11px 24px;border-radius:100px;font-weight:600;font-size:14px;" style-hover="background:#A65B63;color:#FFFEFC;">PDF format</a>
+        </div>
+        <div style="background:#FFFEFC;border:1px solid #DCCBC0;padding:36px 28px;text-align:center;">
+          <div style="width:48px;height:48px;margin:0 auto 18px;color:#A65B63;display:flex;align-items:center;justify-content:center;">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="4" y="3" width="16" height="18" rx="1"/><rect x="8" y="7" width="8" height="10"/></svg>
+          </div>
+          <h3 style="margin:0 0 10px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:23px;color:#4A3933;">Štampano i uokvireno</h3>
+          <p style="margin:0 0 22px;font-size:14px;line-height:1.7;color:#806E66;">Dobijate kvalitetnu štampu u ramu i šaljemo je poštom.</p>
+          <a href="Kreiraj.dc.html" style="display:inline-block;border:1px solid #A65B63;color:#A65B63;padding:11px 24px;border-radius:100px;font-weight:600;font-size:14px;" style-hover="background:#A65B63;color:#FFFEFC;">Narudžba pošte</a>
+        </div>
+        <div style="background:#FFFEFC;border:1px solid #DCCBC0;padding:36px 28px;text-align:center;">
+          <div style="width:48px;height:48px;margin:0 auto 18px;color:#A65B63;display:flex;align-items:center;justify-content:center;font-size:30px;">&#9825;</div>
+          <h3 style="margin:0 0 10px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:23px;color:#4A3933;">Posebne prilike</h3>
+          <p style="margin:0 0 22px;font-size:14px;line-height:1.7;color:#806E66;">Za rođendane, venčanja, slavlja, kao i za svakodnevne male radosti.</p>
+          <a href="Proizvodi.dc.html" style="display:inline-block;border:1px solid #A65B63;color:#A65B63;padding:11px 24px;border-radius:100px;font-weight:600;font-size:14px;" style-hover="background:#A65B63;color:#FFFEFC;">Poklon za svaku priliku</a>
+        </div>
+      </div>
+
+      <div style="margin-top:clamp(28px,4vw,40px);background:#EDE1D5;border-radius:4px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(20px,3vw,40px);align-items:center;padding:clamp(28px,4vw,44px);">
+        <div style="position:relative;width:100%;aspect-ratio:16/10;border-radius:4px;overflow:hidden;"><img src="uploads/samo_neka_bude_tanko_pakovanje_jer_je_unutra_ram_za_sliku.jpg" alt="Zapakovan poklon" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="text-align:center;">
+          <p id="gift-tagline" style="margin:0;min-height:2.4em;white-space:pre-line;font-family:Caveat,cursive;font-size:clamp(30px,4vw,42px);line-height:1.2;color:#4A3933;">{{ typed }}<span style="display:inline-block;width:3px;height:.85em;margin-left:3px;background:#A65B63;vertical-align:-.06em;animation:caretBlink 1.06s step-end infinite;"></span></p>
+          <span style="display:inline-block;margin-top:10px;color:#A65B63;font-size:26px;">&#9825;</span>
+        </div>
+      </div>
+
+      <div style="margin-top:clamp(28px,4vw,40px);display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(20px,4vw,64px);padding-top:8px;">
+        <span style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#806E66;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A65B63" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg>
+          Brza izrada i dostava
+        </span>
+        <span style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#806E66;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A65B63" stroke-width="1.4"><rect x="5" y="10" width="14" height="10" rx="1.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          Sigurna kupovina
+        </span>
+        <span style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#806E66;">
+          <span style="color:#A65B63;font-size:18px;">&#9825;</span>
+          Podrška kupcima
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- UTISCI -->
+  <section class="reveal" style="background:#F8F1EA;border-top:1px solid #DCCBC0;border-bottom:1px solid #DCCBC0;">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,6vw,88px) clamp(16px,4vw,40px);">
+      <div style="text-align:center;max-width:600px;margin:0 auto clamp(32px,4vw,48px);">
+        <p style="margin:0 0 12px;font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#B49A7D;">Utisci kupaca</p>
+        <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(32px,4.5vw,46px);color:#4A3933;">Priče koje su postale pokloni</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(18px,2.4vw,28px);align-items:stretch;">
+        <div style="background:#FFFEFC;border:1px solid #DCCBC0;border-radius:6px;padding:32px 28px;display:flex;flex-direction:column;">
+          <div style="color:#C6912E;font-size:16px;letter-spacing:2px;margin-bottom:14px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p style="margin:0 0 20px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;line-height:1.55;color:#4A3933;flex:1;">„Poručila sam poster za godišnjicu roditeljima. Kad ga je mama otvorila, briznula je u plač — pun pogodak. Kvalitet štampe i okvira je vrhunski.“</p>
+          <span style="font-size:14px;font-weight:600;color:#A65B63;">Marija P.</span>
+          <span style="font-size:13px;color:#806E66;margin-top:2px;">Novi Sad</span>
+        </div>
+        <div style="background:#FFFEFC;border:1px solid #DCCBC0;border-radius:6px;padding:32px 28px;display:flex;flex-direction:column;">
+          <div style="color:#C6912E;font-size:16px;letter-spacing:2px;margin-bottom:14px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p style="margin:0 0 20px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;line-height:1.55;color:#4A3933;flex:1;">„Tražio sam poklon za najbolju drugaricu i našao tačno ono što treba. Izrada brza, stiglo lepo upakovano. Iskrena preporuka!“</p>
+          <span style="font-size:14px;font-weight:600;color:#A65B63;">Nikola J.</span>
+          <span style="font-size:13px;color:#806E66;margin-top:2px;">Beograd</span>
+        </div>
+        <div style="background:#FFFEFC;border:1px solid #DCCBC0;border-radius:6px;padding:32px 28px;display:flex;flex-direction:column;">
+          <div style="color:#C6912E;font-size:16px;letter-spacing:2px;margin-bottom:14px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p style="margin:0 0 20px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;line-height:1.55;color:#4A3933;flex:1;">„Naša venčana fotografija sa citatom sada krasi dnevnu sobu. Svaki gost pita odakle nam. Hvala na trudu i strpljenju oko svakog detalja.“</p>
+          <span style="font-size:14px;font-weight:600;color:#A65B63;">Ana i Stefan</span>
+          <span style="font-size:13px;color:#806E66;margin-top:2px;">Kragujevac</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="reveal" style="max-width:1240px;margin:0 auto;padding:clamp(64px,9vw,120px) clamp(16px,4vw,40px);text-align:center;">
+    <h2 style="margin:0 auto;max-width:720px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(36px,6vw,62px);line-height:1.08;color:#4A3933;">Pokloni nešto što se ne zaboravlja.</h2>
+    <a href="Kreiraj.dc.html" style="margin-top:36px;display:inline-block;background:#A65B63;color:#FFFEFC;padding:18px 40px;border-radius:100px;font-weight:600;font-size:16px;" style-hover="background:#8f4d54;color:#FFFEFC;">Kreiraj svoj poklon</a>
+    <p style="margin:28px 0 0;font-size:15px;line-height:1.6;color:#806E66;">Za sve informacije pozovite: <a href="tel:+381601663019" style="font-weight:600;color:#A65B63;white-space:nowrap;">060 166 30 19</a></p>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { typed: '' };
+  FULL = 'Jer svaki poklon\nmože da kaže više...';
+  startTyping() {
+    if (this._typing) return;
+    this._typing = true;
+    let i = 0;
+    const tick = () => {
+      i++;
+      this.setState({ typed: this.FULL.slice(0, i) });
+      if (i < this.FULL.length) { this._tt = setTimeout(tick, 32); }
+    };
+    this._tt = setTimeout(tick, 180);
+  }
+  componentDidMount() {
+    const p = document.getElementById('gift-tagline');
+    if (p && 'IntersectionObserver' in window) {
+      this._tio = new IntersectionObserver((ents) => {
+        ents.forEach(en => { if (en.isIntersecting) { this.startTyping(); this._tio.disconnect(); } });
+      }, { threshold: 0.5 });
+      this._tio.observe(p);
+    } else { this.startTyping(); }
+    const reveal = () => {
+      const els = Array.from(document.querySelectorAll('section.reveal'));
+      if (!els.length) return false;
+      if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return true; }
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); this._io.unobserve(en.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(e => this._io.observe(e));
+      return true;
+    };
+    if (!reveal()) this._t = setTimeout(reveal, 120);
+  }
+  componentWillUnmount() { if (this._io) this._io.disconnect(); if (this._t) clearTimeout(this._t); if (this._tio) this._tio.disconnect(); if (this._tt) clearTimeout(this._tt); }
+  renderVals() { return { typed: this.state.typed }; }
+}
+</script>
+</body>
+</html>

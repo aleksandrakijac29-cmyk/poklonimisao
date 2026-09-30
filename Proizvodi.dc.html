@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  a { color: #A65B63; text-decoration: none; }
+  a:hover { color: #4A3933; }
+  select { font-family: Manrope, sans-serif; }
+</style>
+<style>.sc-host[data-sc-name="Header"]{display:contents;}</style>
+</helmet>
+<div style="background:#FFFEFC;font-family:Manrope,sans-serif;color:#4A3933;-webkit-font-smoothing:antialiased;">
+  <dc-import name="Header" active="proizvodi" hint-size="100%,72px"></dc-import>
+
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,72px) clamp(16px,4vw,40px) clamp(56px,7vw,96px);">
+    <div style="text-align:center;max-width:640px;margin:0 auto clamp(32px,4vw,48px);">
+      <p style="margin:0 0 12px;font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#B49A7D;">Naša kolekcija</p>
+      <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,5vw,52px);line-height:1.05;color:#4A3933;">Proizvodi</h1>
+      <p style="margin:16px 0 0;font-size:16px;line-height:1.7;color:#806E66;">Izaberi polazni predložak, a zatim ga pretvori u nešto tvoje.</p>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:clamp(32px,4vw,48px);">
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="7">
+        <button onClick="{{ f.onClick }}" style="background:{{ f.bg }};border:1px solid {{ f.border }};color:{{ f.color }};padding:10px 18px;border-radius:100px;cursor:pointer;font-family:Manrope,sans-serif;font-size:14px;font-weight:600;">{{ f.label }}</button>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ hasPortrait }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:clamp(20px,3vw,32px);align-items:stretch;">
+        <sc-for list="{{ portraitProducts }}" as="p" hint-placeholder-count="6">
+          <div style="background:#FFFEFC;border:1px solid #DCCBC0;display:flex;flex-direction:column;overflow:hidden;">
+            <img src="uploads/{{ p.img }}" alt="{{ p.name }}" onClick="{{ p.onZoom }}" style="display:block;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center;cursor:zoom-in;" />
+            <div style="padding:20px;display:flex;flex-direction:column;flex:1;border-top:1px solid #EDE1D5;">
+              <span style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#B49A7D;">{{ p.cat }}</span>
+              <h3 style="margin:8px 0 8px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:#4A3933;">{{ p.name }}</h3>
+              <p style="margin:0 0 18px;font-size:14px;line-height:1.65;color:#806E66;flex:1;">{{ p.desc }}</p>
+              <select style="width:100%;margin-bottom:12px;background:#F8F1EA;border:1px solid #DCCBC0;border-radius:2px;padding:11px 12px;font-size:14px;color:#4A3933;">
+                <option>Digitalni PDF — 790 din</option>
+                <option>Štampana slika — 1.190 din</option>
+                <option>Štampana i uramljena — 2.190 din</option>
+              </select>
+              <a href="Kreiraj.dc.html" style="text-align:center;background:#A65B63;color:#FFFEFC;padding:13px;border-radius:2px;font-weight:600;font-size:14.5px;" style-hover="background:#8f4d54;color:#FFFEFC;">Kreiraj svoj poklon</a>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ hasLandscape }}" hint-placeholder-val="{{ false }}">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:clamp(20px,3vw,32px);align-items:stretch;margin-top:clamp(20px,3vw,32px);">
+        <sc-for list="{{ landscapeProducts }}" as="p" hint-placeholder-count="3">
+          <div style="background:#FFFEFC;border:1px solid #DCCBC0;display:flex;flex-direction:column;overflow:hidden;">
+            <img src="uploads/{{ p.img }}" alt="{{ p.name }}" onClick="{{ p.onZoom }}" style="display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center;cursor:zoom-in;" />
+            <div style="padding:20px;display:flex;flex-direction:column;flex:1;border-top:1px solid #EDE1D5;">
+              <span style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#B49A7D;">{{ p.cat }}</span>
+              <h3 style="margin:8px 0 8px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:#4A3933;">{{ p.name }}</h3>
+              <p style="margin:0 0 18px;font-size:14px;line-height:1.65;color:#806E66;flex:1;">{{ p.desc }}</p>
+              <select style="width:100%;margin-bottom:12px;background:#F8F1EA;border:1px solid #DCCBC0;border-radius:2px;padding:11px 12px;font-size:14px;color:#4A3933;">
+                <option>Digitalni PDF — 790 din</option>
+                <option>Štampana slika — 1.190 din</option>
+                <option>Štampana i uramljena — 2.190 din</option>
+              </select>
+              <a href="Kreiraj.dc.html" style="text-align:center;background:#A65B63;color:#FFFEFC;padding:13px;border-radius:2px;font-weight:600;font-size:14.5px;" style-hover="background:#8f4d54;color:#FFFEFC;">Kreiraj svoj poklon</a>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+  </div>
+
+  <dc-import name="Footer" hint-size="100%,360px"></dc-import>
+
+  <sc-if value="{{ zoomImg }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeZoom }}" style="position:fixed;inset:0;z-index:1000;background:rgba(37,29,25,.86);display:flex;align-items:center;justify-content:center;padding:clamp(20px,5vw,64px);cursor:zoom-out;">
+      <img src="uploads/{{ zoomImg }}" alt="" style="max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.5);" />
+      <button onClick="{{ closeZoom }}" aria-label="Zatvori" style="position:fixed;top:20px;right:24px;width:44px;height:44px;border:none;border-radius:100px;background:rgba(255,254,252,.14);color:#FFFEFC;font-size:24px;line-height:1;cursor:pointer;">×</button>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { filter: 'Sve', zoomImg: null };
+  CATS = ['Sve', 'Ljubav', 'Porodica', 'Prijateljstvo', 'Deca', 'Posebne prilike'];
+  PRODUCTS = [
+    { cat: 'Deca', name: 'Bezuslovna ljubav', desc: '„Svet bi bio lepše mesto kada bi svi ljudi, poput pasa, mogli voleti bezuslovno."', img: 'GridArt_20260930_091606313.jpg' },
+    { cat: 'Porodica', name: 'Brat i sestra', desc: '„Brat i sestra: malo svađe, mnogo smeha i bezbroj uspomena."', img: 'GridArt_20260930_094605933.jpg' },
+    { cat: 'Deca', name: 'Prvi koraci', desc: '„Mali koraci, veliki snovi…" — uspomena na prve trenutke.', img: 'GridArt_20260925_092701892.jpg' },
+    { cat: 'Prijateljstvo', name: 'Razlog osmeha', desc: '„Budi razlog nečijeg osmeha" — poster za dragu osobu.', img: 'GridArt_20260925_134827229.jpg' },
+    { cat: 'Prijateljstvo', name: 'Naše vreme', desc: '„Možda će i biti lepših vremena, ali ovo je naše…"', img: 'GridArt_20260925_141353450.jpg', wide: true },
+    { cat: 'Porodica', name: 'Majčina ljubav', desc: '„Kada brojiš blagodati koje imaš, majku računaj dvaput!"', img: 'GridArt_20260926_143649085.jpg' },
+    { cat: 'Posebne prilike', name: 'Kumstvo', desc: '„Kumstvo je večna sveća koja svetli u najmračnijim trenucima…"', img: 'GridArt_20260927_160624938.jpg' },
+    { cat: 'Ljubav', name: 'Zajedno starimo', desc: '„Voleti znači pristati da zajedno starimo."', img: 'GridArt_20260927_162351189.jpg' },
+    { cat: 'Ljubav', name: 'Venčani dan', desc: '„Ljubav je jedina stvar koju ne treba objašnjavati."', img: 'GridArt_20260927_211624823.jpg' },
+    { cat: 'Ljubav', name: 'Dom je tamo', desc: '„Dom je tamo gde si ti."', img: '16-65181a40.jpg' },
+    { cat: 'Deca', name: 'Snovi', desc: '„Snovi su početak svega…"', img: '1000071535-857fd2c8.jpg' },
+    { cat: 'Porodica', name: 'Uz svako dete', desc: '„Iza svakog deteta koje veruje u sebe stoji roditelj koji je verovao prvi."', img: 'GridArt_20260927_212717891.jpg' },
+    { cat: 'Prijateljstvo', name: 'Pravi prijatelj', desc: '„Prijatelj je onaj koji zna sve o tebi i još uvek te ceni."', img: 'GridArt_20260927_213437933.jpg', wide: true },
+    { cat: 'Posebne prilike', name: 'Putnička duša', desc: '„Čovek putuje svetom u potrazi za onim što mu treba…"', img: 'kreiraj_mi_sliku_beli_ram_krem_pozadina_a_na_njoj_devojka_gl.jpg', wide: true },
+    { cat: 'Posebne prilike', name: 'Srećan rođendan', desc: '„Nijedan mudar čovek nije nikad želeo da bude mlađi. Srećan rođendan!"', img: 'GridArt_20260928_101612139.jpg', wide: true },
+    { cat: 'Ljubav', name: 'Ljubav za ceo život', desc: '„Pronađite osobu koja će vas voleti zbog vaših mana a ne uprkos njima…"', img: 'GridArt_20260928_102432035.jpg', wide: true },
+    { cat: 'Posebne prilike', name: 'Razredna uspomena', desc: '„Ne predaje učitelj ono što želi… učitelj predaje ono što jeste."', img: '19-10093435.png', wide: true },
+    { cat: 'Ljubav', name: 'Gde ima ljubavi', desc: '„Gde ima ljubavi, ima i života."', img: 'Couple_walking_on_beach_20260928141948-ab2d2f87.jpg' },
+    { cat: 'Porodica', name: 'Dom su oni koje volimo', desc: '„Dom je tamo gde su oni koje volimo."', img: 'Mother_and_daughter_embracing_20260928141932-677c69b0.jpg' },
+    { cat: 'Porodica', name: 'Porodični kompas', desc: '„Porodica je kompas koji nas vodi kroz život."', img: 'Family_laughing_around_dinner_table_20260928141920-f8094a26.jpg' },
+    { cat: 'Deca', name: 'Najmanja stopala', desc: '„Najmanja stopala ostavljaju najveće tragove u našim srcima."', img: 'Father_lifting_child_in_air_20260928141911.jpg' },
+    { cat: 'Posebne prilike', name: 'Strpljenje', desc: '„Strpljenje je ključ koji otvara sva vrata."', img: 'Man_crafting_wooden_object_20260928141441.jpg' },
+    { cat: 'Posebne prilike', name: 'Muzika', desc: '„Muzika izražava ono što se ne može izreći rečima."', img: 'Woman_playing_piano_20260928141429.jpg' },
+    { cat: 'Posebne prilike', name: 'Mir iznutra', desc: '„Mir dolazi iznutra. Ne traži ga spolja."', img: 'Woman_sitting_on_beach_20260928141416.jpg' },
+    { cat: 'Posebne prilike', name: 'Priroda ne žuri', desc: '„Priroda ne žuri, a ipak sve postigne."', img: 'Woman_walking_through_forest_20260928141032.jpg' },
+    { cat: 'Posebne prilike', name: 'Način putovanja', desc: '„Sreća nije cilj, već način putovanja."', img: 'Woman_holding_mug_at_table_20260928141012.jpg' },
+  ];
+  renderVals() {
+    const f = this.state.filter;
+    const filters = this.CATS.map(c => {
+      const on = f === c;
+      return { label: c, onClick: () => this.setState({ filter: c }), bg: on ? '#A65B63' : '#FFFEFC', border: on ? '#A65B63' : '#DCCBC0', color: on ? '#FFFEFC' : '#806E66' };
+    });
+    const withZoom = p => ({ ...p, onZoom: () => this.setState({ zoomImg: p.img }) });
+    const products = (f === 'Sve' ? this.PRODUCTS : this.PRODUCTS.filter(p => p.cat === f)).map(withZoom);
+    const portraitProducts = products.filter(p => !p.wide);
+    const landscapeProducts = products.filter(p => p.wide);
+    return { filters, portraitProducts, landscapeProducts, hasPortrait: portraitProducts.length > 0, hasLandscape: landscapeProducts.length > 0, zoomImg: this.state.zoomImg, closeZoom: () => this.setState({ zoomImg: null }) };
+  }
+}
+</script>
+</body>
+</html>
