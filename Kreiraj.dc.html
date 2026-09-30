@@ -232,11 +232,11 @@
                 <label style="display:block;font-size:13px;font-weight:600;color:#4A3933;margin-bottom:7px;">Napomena (opciono)</label>
                 <textarea rows="3" value="{{ cNote }}" onInput="{{ onCNote }}" placeholder="Poseban zahtev, željeni datum isporuke..." style="width:100%;background:#FFFEFC;border:1px solid #DCCBC0;border-radius:2px;padding:13px 14px;font-size:15px;line-height:1.6;color:#4A3933;resize:vertical;"></textarea>
               </div>
-              <p style="margin:0;padding:14px 16px;background:#F8F1EA;border:1px dashed #DCCBC0;border-radius:2px;font-size:13.5px;line-height:1.65;color:#806E66;">📷 Fotografiju za poster pošalji na <a href="mailto:poklonimisao@gmail.com?subject=Fotografija%20za%20porud%C5%BEbinu" style="font-weight:600;">poklonimisao@gmail.com</a> ili nam se javi na <a href="tel:+381601663019" style="font-weight:600;white-space:nowrap;">060 166 30 19</a> — javljamo ti se sa potvrdom.</p>
+              <p style="margin:0;padding:14px 16px;background:#F8F1EA;border:1px dashed #DCCBC0;border-radius:2px;font-size:13.5px;line-height:1.65;color:#806E66;">Nakon porudžbine javljamo ti se radi potvrde, plaćanja i fotografije za poster — sve dogovaramo lično.</p>
             </div>
             <button onClick="{{ submitOrder }}" disabled="{{ ordering }}" style="width:100%;margin-top:22px;background:#A65B63;color:#FFFEFC;border:none;padding:17px;border-radius:2px;font-family:Manrope,sans-serif;font-weight:600;font-size:16px;cursor:pointer;opacity:{{ orderBtnOpacity }};" style-hover="background:#8f4d54;">{{ orderBtnLabel }}</button>
             <sc-if value="{{ orderSent }}" hint-placeholder-val="{{ false }}">
-              <p style="margin:16px 0 0;padding:16px;background:#EDE1D5;border:1px solid #DCCBC0;border-radius:2px;font-size:14.5px;line-height:1.65;color:#4A3933;">Hvala! Porudžbina je poslata. Javljamo se uskoro na tvoj e-mail radi potvrde i plaćanja. Ne zaboravi da pošalješ fotografiju na poklonimisao@gmail.com.</p>
+              <p style="margin:16px 0 0;padding:16px;background:#EDE1D5;border:1px solid #DCCBC0;border-radius:2px;font-size:14.5px;line-height:1.65;color:#4A3933;">Hvala! Porudžbina je poslata. Javljamo ti se uskoro radi potvrde, plaćanja i fotografije za tvoj poster.</p>
             </sc-if>
             <sc-if value="{{ orderError }}" hint-placeholder-val="{{ false }}">
               <p style="margin:16px 0 0;padding:16px;background:#F3E3E1;border:1px solid #D8B4B0;border-radius:2px;font-size:14.5px;line-height:1.65;color:#8f4d54;">{{ orderErrorMsg }}</p>
@@ -579,7 +579,7 @@ class Component extends DCLogic {
           f.append('Stil', st.style);
           f.append('Boja pozadine', BGNAMES[st.bg] || st.bg);
           f.append('Napomena', st.cNote || '—');
-          f.append('Fotografija', 'Kupac šalje mejlom na poklonimisao@gmail.com');
+          f.append('Fotografija', 'Dogovara se naknadno (kontaktirati kupca)');
           const res = await fetch('https://formspree.io/f/' + this.ORDER_FORMSPREE_ID, {
             method: 'POST', headers: { 'Accept': 'application/json' }, body: f,
           });
