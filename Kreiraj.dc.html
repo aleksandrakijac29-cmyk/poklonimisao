@@ -10,7 +10,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700&family=Caveat:wght@500;600;700&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700&family=Caveat:wght@500;600;700&family=Dancing+Script:wght@500;600;700&family=Gochi+Hand&family=Lora:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; }
   body { margin: 0; }
@@ -98,7 +98,7 @@
               </div>
             </sc-if>
             <sc-if value="{{ showNone }}" hint-placeholder-val="{{ false }}">
-              <p style="margin:0;padding:24px;background:#F8F1EA;border:1px dashed #DCCBC0;border-radius:2px;font-size:15px;line-height:1.6;color:#806E66;text-align:center;">Poster bez teksta — u prvom planu je samo vaša fotografija.</p>
+              <p style="margin:0;padding:24px;background:#F8F1EA;border:1px dashed #DCCBC0;border-radius:2px;font-size:15px;line-height:1.6;color:#806E66;text-align:center;">Poster bez teksta - u prvom planu je samo vaša fotografija.</p>
             </sc-if>
             <div style="margin-top:28px;display:flex;justify-content:space-between;gap:12px;">
               <button onClick="{{ prev }}" style="background:transparent;color:#A65B63;border:1px solid #DCCBC0;padding:15px 24px;border-radius:2px;font-family:Manrope,sans-serif;font-weight:600;font-size:15px;cursor:pointer;" style-hover="border-color:#A65B63;">&larr; Nazad</button>
@@ -232,7 +232,7 @@
                 <label style="display:block;font-size:13px;font-weight:600;color:#4A3933;margin-bottom:7px;">Napomena (opciono)</label>
                 <textarea rows="3" value="{{ cNote }}" onInput="{{ onCNote }}" placeholder="Poseban zahtev, željeni datum isporuke..." style="width:100%;background:#FFFEFC;border:1px solid #DCCBC0;border-radius:2px;padding:13px 14px;font-size:15px;line-height:1.6;color:#4A3933;resize:vertical;"></textarea>
               </div>
-              <p style="margin:0;padding:14px 16px;background:#F8F1EA;border:1px dashed #DCCBC0;border-radius:2px;font-size:13.5px;line-height:1.65;color:#806E66;">Nakon porudžbine javljamo ti se radi potvrde, plaćanja i fotografije za poster — sve dogovaramo lično.</p>
+              <p style="margin:0;padding:14px 16px;background:#F8F1EA;border:1px dashed #DCCBC0;border-radius:2px;font-size:13.5px;line-height:1.65;color:#806E66;">Nakon porudžbine javljamo ti se radi potvrde, plaćanja i fotografije za poster - sve dogovaramo lično.</p>
             </div>
             <button onClick="{{ submitOrder }}" disabled="{{ ordering }}" style="width:100%;margin-top:22px;background:#A65B63;color:#FFFEFC;border:none;padding:17px;border-radius:2px;font-family:Manrope,sans-serif;font-weight:600;font-size:16px;cursor:pointer;opacity:{{ orderBtnOpacity }};" style-hover="background:#8f4d54;">{{ orderBtnLabel }}</button>
             <sc-if value="{{ orderSent }}" hint-placeholder-val="{{ false }}">
@@ -330,7 +330,7 @@ class Component extends DCLogic {
       'Zajedno smo najlepša priča.',
       'Porodica je gde počinje ljubav.',
       'Naš dom je pun topline.',
-      'Porodica — naše zauvek.',
+      'Porodica - naše zauvek.',
       'Gde je porodica, tu je i sreća.',
       'Naša najveća blaga sede za istim stolom.',
       'Zajedno kroz sve, uvek.',
@@ -339,7 +339,7 @@ class Component extends DCLogic {
       'Uspomene koje stvaramo su naše najveće bogatstvo.',
       'Porodica je gde život počinje, a ljubav nikad ne prestaje.',
       'Naš mali svet, naša velika sreća.',
-      'Koreni i krila — to jedno drugom dajemo.',
+      'Koreni i krila - to jedno drugom dajemo.',
       'Najlepše priče pišu se za porodičnim stolom.',
       'Srce porodice kuca u svakom od nas.',
       'Zajedno smo jači, zajedno smo dom.',
@@ -373,7 +373,7 @@ class Component extends DCLogic {
       'Neka se sve želje ostvare.',
       'Neka ti srce bude puno kao i danas.',
       'Sve najlepše na tvoj poseban dan.',
-      'Slavi sebe — zaslužuješ svaki trenutak.',
+      'Slavi sebe - zaslužuješ svaki trenutak.',
       'Neka svaka sveća nosi po jednu ostvarenu želju.',
       'Godine su samo brojevi, srce ostaje mlado.',
       'Neka ti nova godina donese samo lepe priče.',
@@ -389,19 +389,19 @@ class Component extends DCLogic {
     ],
     'Zahvalnost': [
       'Hvala na svakom trenutku.',
-      'Za sve što činiš — hvala.',
+      'Za sve što činiš - hvala.',
       'Hvala što postojiš u mom životu.',
       'Zahvalnost je pamćenje srca.',
-      'Za male stvari koje mnogo znače — hvala.',
+      'Za male stvari koje mnogo znače - hvala.',
       'Hvala što si uvek verovao/la u mene.',
       'Tvoja dobrota ostavlja trag zauvek.',
       'Hvala za svaku reč, gest i pogled.',
       'Sreća je imati kome reći hvala.',
-      'Za sve trenutke koje čuvam u srcu — hvala.',
+      'Za sve trenutke koje čuvam u srcu - hvala.',
       'Hvala što si mi pokazao/la šta je prava ljubav.',
-      'Bez tebe ništa ne bi bilo isto — hvala.',
+      'Bez tebe ništa ne bi bilo isto - hvala.',
       'Hvala što si moje sigurno mesto.',
-      'Za svu podršku i strpljenje — beskrajno hvala.',
+      'Za svu podršku i strpljenje - beskrajno hvala.',
       'Zahvalan/na sam za svaki dan sa tobom.',
       'Hvala što činiš svet lepšim mestom.',
     ],
@@ -425,7 +425,7 @@ class Component extends DCLogic {
       'Priroda ne žuri, a ipak sve postigne.',
       'Sreća nije cilj, već način putovanja.',
       'Čovek putuje svetom u potrazi za onim što mu treba…',
-      'Ne predaje učitelj ono što želi — učitelj predaje ono što jeste.',
+      'Ne predaje učitelj ono što želi - učitelj predaje ono što jeste.',
       'Kumstvo je večna sveća koja svetli u najmračnijim trenucima…',
     ],
   };
@@ -498,23 +498,23 @@ class Component extends DCLogic {
       const on = st.format === f.label;
       return { ...f, onClick: () => this.set('format', f.label), bg: on ? '#F8F1EA' : '#FFFEFC', border: on ? '#A65B63' : unsel };
     });
-    // beli okvir — podrazumevani i jedini
+    // beli okvir - podrazumevani i jedini
     const frameMap = { w: '12px', c: '#FFFFFF', pad: '18px' };
 
     // style -> quote typography
     const styleMap = {
       'Minimalistički': { font: 'Manrope, sans-serif', italic: 'normal', weight: 500 },
       'Romantični': { font: "'Dancing Script', cursive", italic: 'normal', weight: 600 },
-      'Porodični': { font: "'Cormorant Garamond', serif", italic: 'normal', weight: 600 },
+      'Porodični': { font: "'Lora', serif", italic: 'italic', weight: 600 },
       'Nežni pastelni': { font: "'Cormorant Garamond', serif", italic: 'italic', weight: 400 },
-      'Dečji': { font: 'Caveat, cursive', italic: 'normal', weight: 600 },
+      'Dečji': { font: "'Gochi Hand', cursive", italic: 'normal', weight: 400 },
     }[st.style];
 
     const dark = st.bg === '#4A3933';
     const BGNAMES = { '#F8F1EA': 'krem', '#EDE1D5': 'bež', '#E8C7C4': 'puderasta', '#FFFEFC': 'bela', '#4A3933': 'topla braon' };
     const showQuote = st.textMode !== 'none';
     const previewQuote = st.textMode === 'custom' ? (st.customQuote || 'Tvoja misao...') : st.quote;
-    const sumCitat = st.textMode === 'none' ? 'Bez teksta' : (st.textMode === 'custom' ? (st.customQuote || '—') : st.quote);
+    const sumCitat = st.textMode === 'none' ? 'Bez teksta' : (st.textMode === 'custom' ? (st.customQuote || '-') : st.quote);
 
     const priceNum = { 'Digitalni PDF': 790, 'Štampana slika': 1190, 'Štampana i uramljena': 2190 }[st.format] || 0;
     const total = priceNum * st.qty;
@@ -567,18 +567,18 @@ class Component extends DCLogic {
         this.setState({ ordering: true, orderError: false });
         try {
           const f = new FormData();
-          f.append('_subject', 'Nova PORUDŽBINA — Pokloni misao');
+          f.append('_subject', 'Nova PORUDŽBINA - Pokloni misao');
           f.append('Ime', st.cName);
           f.append('email', st.cEmail);
           f.append('Telefon', st.cPhone);
-          f.append('Adresa', needsAddress ? (st.cAddr + ', ' + st.cCity + ' ' + st.cZip) : 'Digitalni — bez isporuke');
+          f.append('Adresa', needsAddress ? (st.cAddr + ', ' + st.cCity + ' ' + st.cZip) : 'Digitalni - bez isporuke');
           f.append('Format', st.format);
           f.append('Kolicina', String(st.qty));
           f.append('Ukupno', totalPrice);
           f.append('Citat', sumCitat);
           f.append('Stil', st.style);
           f.append('Boja pozadine', BGNAMES[st.bg] || st.bg);
-          f.append('Napomena', st.cNote || '—');
+          f.append('Napomena', st.cNote || '-');
           f.append('Fotografija', 'Dogovara se naknadno (kontaktirati kupca)');
           const res = await fetch('https://formspree.io/f/' + this.ORDER_FORMSPREE_ID, {
             method: 'POST', headers: { 'Accept': 'application/json' }, body: f,
